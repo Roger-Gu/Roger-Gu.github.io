@@ -50,6 +50,40 @@ nav {
     color: #0066cc;
 }
 
+/* Dropdown Styling */
+.dropdown-menu {
+    display: none;  /* Initially hidden */
+    position: absolute;
+    background-color: #444;
+    min-width: 180px;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    border-radius: 5px;
+    z-index: 1000;  /* Ensure it stays on top */
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu a {
+    padding: 10px;
+    color: white;
+    display: block;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Hover effect */
+.nav-links a:hover,
+.dropdown-menu a:hover {
+    background-color: #555;
+}
+
 /* Main Content */
 main {
     padding: 40px 0;
@@ -76,7 +110,7 @@ h2 {
 }
 
 /* Blog Posts & Course Notes */
-.post-preview, .course-preview {
+.post-preview, .course-preview, .preview {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px dotted #ddd;

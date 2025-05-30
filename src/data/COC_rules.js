@@ -1,4 +1,4 @@
-// src/data/rulesCOC.js
+// src/data/COC_rules.js
 
 export const rulesCOC = [
   {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FileText, Book, Home, User, Download, ExternalLink } from 'lucide-react';
 // Import data from separate files
-import { blogPosts, getRecentBlogPosts, getBlogPostById, getAllTags } from './data/blogPosts';
-import { courses, getCourseById, getAllTopics, getDifficultyLevels } from './data/courses';
+import { blogPosts } from './data/blogPosts';
+import { courses } from './data/courses';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');

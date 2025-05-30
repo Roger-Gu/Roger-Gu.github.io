@@ -386,7 +386,7 @@ const App = () => {
             <div className="mb-6">
               <h3 className="font-medium text-gray-900 mb-3">Topics Covered:</h3>
               <div className="flex flex-wrap gap-2">
-                {selectedCourse.topics.map(topic => (
+                {course.topics.map(topic => (
                   <span key={topic} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                     {topic}
                   </span>
@@ -396,14 +396,14 @@ const App = () => {
             
             <div 
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: selectedCourse.notes }}
+              dangerouslySetInnerHTML={{ __html: course.notes }}
             />
             
-            {selectedCourse.resources && (
+            {course.resources && (
               <div className="mt-8 pt-6 border-t">
                 <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>
                 <ul className="space-y-2">
-                  {selectedCourse.resources.map((resource, index) => (
+                  {course.resources.map((resource, index) => (
                     <li key={index} className="flex items-center">
                       <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
                         {resource.type}

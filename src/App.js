@@ -108,10 +108,17 @@ const App = () => {
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">{post.title}</h2>
             <p className="text-gray-500 text-sm mb-4">{post.date}</p>
             <p className="text-gray-700 mb-4">{post.excerpt}</p>
-            <button className="text-blue-600 hover:text-blue-800 font-medium">
+            <button
+              className="text-blue-600 hover:text-blue-800 font-medium"
+              onClick={() => setActivePost(post)}
+            >
               Read more →
             </button>
-            <p className="text-gray-700">{post.content}</p>
+            {activePost === post && (
+              <div className="mt-6">
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              </div>
+            )}
           </article>
         ))}
       </div>

@@ -1,31 +1,44 @@
 import React, { useState } from 'react';
-import { FileText, Book, Home, User, Download, ExternalLink } from 'lucide-react';
+import { FileText, Book, Home, User, Download, ExternalLink, Clock, Tag } from 'lucide-react';
+
 // Import data from separate files
-import { blogPosts } from './data/blogPosts';
-import { courses } from './data/courses';
+import { blogPosts, getRecentBlogPosts, _getBlogPostById, _getAllTags } from './data/blogPosts';
+import { courses, _getCourseById, _getAllTopics, _getDifficultyLevels } from './data/courses';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogPost, setSelectedBlogPost] = useState(null);
-  const [_selectedCourse, _setSelectedCourse] = useState(null);
-  const [_selectedTag, setSelectedTag] = useState(null);
+  const [_selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedTag, setSelectedTag] = useState(null);
 
   const Navigation = () => (
     <nav className="bg-white shadow-sm border-b">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <div className="text-xl font-bold text-gray-800">My Website</div>
+          <div 
+            className="text-xl font-bold text-gray-800 cursor-pointer"
+            onClick={() => {
+              setActiveSection('home');
+              setSelectedBlogPost(null);
+              setSelectedCourse(null);
+            }}
+          >
+            My Website
+          </div>
           <div className="flex space-x-6">
             {[
               { id: 'home', label: 'Home', icon: Home },
-              { id: 'blog', label: '观林碎语', icon: FileText },
+              { id: 'blog', label: 'Blog', icon: FileText },
               { id: 'courses', label: 'Courses', icon: Book },
-              { id: 'coc', label: 'Call of Cthulhu', icon: FileText },
               { id: 'about', label: 'About', icon: User }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
-                onClick={() => setActiveSection(id)}
+                onClick={() => {
+                  setActiveSection(id);
+                  setSelectedBlogPost(null);
+                  setSelectedCourse(null);
+                }}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${
                   activeSection === id 
                     ? 'bg-blue-100 text-blue-700' 
@@ -42,61 +55,85 @@ const App = () => {
     </nav>
   );
 
-  const HomePage = () => (
-    <div className="space-y-12">
-      <div className="text-center py-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to My Website</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          A place for my thoughts, course notes, and the Call of Cthulhu TRPG games.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-2xl font-semibold mb-4 flex items-center">
-            <FileText className="mr-2 text-blue-600" />
-            Recent Blog Posts
-          </h2>
-          <div className="space-y-4">
-            {blogPosts.slice(0, 2).map(post => (
-              <div key={post.id} className="border-l-4 border-blue-200 pl-4">
-                <h3 className="font-medium text-gray-900">{post.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                <p className="text-gray-600 text-sm">{post.excerpt}</p>
-              </div>
-            ))}
-          </div>
-          <button 
-            onClick={() => setActiveSection('blog')}
-            className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
-          >
-            View all posts →
-          </button>
+  const HomePage = () => {
+    const recentPosts = getRecentBlogPosts(2);
+    
+    return (
+      <div className="space-y-12">
+        <div className="text-center py-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to My Website</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            A place for my thoughts, blog posts, and course notes. Explore my journey through technology and learning.
+          </p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-2xl font-semibold mb-4 flex items-center">
-            <Book className="mr-2 text-green-600" />
-            Course Notes
-          </h2>
-          <div className="space-y-4">
-            {courses.slice(0, 2).map(course => (
-              <div key={course.id} className="border-l-4 border-green-200 pl-4">
-                <h3 className="font-medium text-gray-900">{course.title}</h3>
-                <p className="text-gray-600 text-sm">{course.description}</p>
-              </div>
-            ))}
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm border">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center">
+              <FileText className="mr-2 text-blue-600" />
+              Recent Blog Posts
+            </h2>
+            <div className="space-y-4">
+              {recentPosts.map(post => (
+                <div key={post.id} className="border-l-4 border-blue-200 pl-4">
+                  <h3 
+                    className="font-medium text-gray-900 cursor-pointer hover:text-blue-600"
+                    onClick={() => {
+                      setSelectedBlogPost(post);
+                      setActiveSection('blog');
+                    }}
+                  >
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-2 flex items-center">
+                    <Clock size={14} className="mr-1" />
+                    {post.date} • {post.readTime}
+                  </p>
+                  <p className="text-gray-600 text-sm">{post.excerpt}</p>
+                </div>
+              ))}
+            </div>
+            <button 
+              onClick={() => setActiveSection('blog')}
+              className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
+            >
+              View all posts →
+            </button>
           </div>
-          <button 
-            onClick={() => setActiveSection('courses')}
-            className="mt-4 text-green-600 hover:text-green-800 font-medium"
-          >
-            View all courses →
-          </button>
+
+          <div className="bg-white p-6 rounded-lg shadow-sm border">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center">
+              <Book className="mr-2 text-green-600" />
+              Course Notes
+            </h2>
+            <div className="space-y-4">
+              {courses.slice(0, 2).map(course => (
+                <div key={course.id} className="border-l-4 border-green-200 pl-4">
+                  <h3 
+                    className="font-medium text-gray-900 cursor-pointer hover:text-green-600"
+                    onClick={() => {
+                      setSelectedCourse(course);
+                      setActiveSection('courses');
+                    }}
+                  >
+                    {course.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-1">{course.semester} • {course.difficulty}</p>
+                  <p className="text-gray-600 text-sm">{course.description}</p>
+                </div>
+              ))}
+            </div>
+            <button 
+              onClick={() => setActiveSection('courses')}
+              className="mt-4 text-green-600 hover:text-green-800 font-medium"
+            >
+              View all courses →
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const BlogPage = () => {
     if (selectedBlogPost) {
@@ -143,6 +180,72 @@ const App = () => {
         </div>
       );
     }
+
+    const displayPosts = selectedTag 
+      ? blogPosts.filter(post => post.tags.includes(selectedTag))
+      : blogPosts;
+
+    return (
+      <div className="space-y-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            {selectedTag ? `Posts tagged "${selectedTag}"` : 'Blog Posts'}
+          </h1>
+          <p className="text-gray-600">My thoughts and experiences</p>
+          
+          {selectedTag && (
+            <button 
+              onClick={() => setSelectedTag(null)}
+              className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
+            >
+              ← View all posts
+            </button>
+          )}
+        </div>
+
+        <div className="space-y-6">
+          {displayPosts.map(post => (
+            <article key={post.id} className="bg-white p-6 rounded-lg shadow-sm border">
+              <h2 
+                className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-blue-600"
+                onClick={() => setSelectedBlogPost(post)}
+              >
+                {post.title}
+              </h2>
+              <div className="flex items-center space-x-4 text-gray-500 text-sm mb-4">
+                <span className="flex items-center">
+                  <Clock size={14} className="mr-1" />
+                  {post.date}
+                </span>
+                <span>{post.readTime}</span>
+              </div>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map(tag => (
+                  <span 
+                    key={tag} 
+                    className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
+                    onClick={() => setSelectedTag(tag)}
+                  >
+                    <Tag size={12} className="inline mr-1" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <p className="text-gray-700 mb-4">{post.excerpt}</p>
+              <button 
+                onClick={() => setSelectedBlogPost(post)}
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Read more →
+              </button>
+            </article>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   const CoursesPage = () => (
     <div className="space-y-8">

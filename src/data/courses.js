@@ -25,31 +25,17 @@ export const courses = [
       
       <h3>Key Learning Outcomes</h3>
       <ul>
-        <li>Understand fundamental ML algorithms and their applications</li>
-        <li>Implement ML models from scratch and using libraries</li>
-        <li>Evaluate model performance and avoid overfitting</li>
-        <li>Work with real-world datasets and preprocessing techniques</li>
-      </ul>
-      
-      <h3>Projects Completed</h3>
-      <ul>
-        <li>Housing price prediction using linear regression</li>
-        <li>Image classification with neural networks</li>
-        <li>Customer segmentation using clustering</li>
-        <li>Sentiment analysis of movie reviews</li>
+        <li>General measures and measurability</li>
+        <li>Caratheodory Extension theorem and construction of measures</li>
+        <li>Integration theory, convergence theorems</li>
+        <li>Measure on Locally compact Hausdorff spaces</li>.
+        <li>Urysohn's lemma, Radon-Nikodym theorem</li>
+        <li>Lp-spaces</li>
+        <li>Product measures, Fubini's theorem</li>
+        <li>Complex measures and Duality</li>
       </ul>
     `,
     resources: [
-      {
-        type: "textbook",
-        title: "Pattern Recognition and Machine Learning",
-        author: "Christopher Bishop"
-      },
-      {
-        type: "online",
-        title: "Andrew Ng's Machine Learning Course",
-        url: "https://www.coursera.org/learn/machine-learning"
-      }
     ]
   },
   {
@@ -107,120 +93,6 @@ export const courses = [
         type: "online",
         title: "LeetCode Problem Practice",
         url: "https://leetcode.com"
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: "Full-Stack Web Development",
-    description: "Complete web development course covering frontend, backend, and database technologies.",
-    instructor: "Ms. Davis",
-    semester: "Summer 2024",
-    pdfUrl: "/assets/pdfs/web-dev-notes.pdf",
-    topics: [
-      "HTML5 & CSS3",
-      "JavaScript ES6+",
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "REST APIs",
-      "Authentication",
-      "Deployment",
-      "Testing"
-    ],
-    difficulty: "Beginner to Intermediate",
-    duration: "12 weeks",
-    notes: `
-      <h2>Course Overview</h2>
-      <p>This intensive course covers the complete web development stack from frontend to backend.</p>
-      
-      <h3>Frontend Technologies</h3>
-      <ul>
-        <li><strong>HTML5:</strong> Semantic markup and modern features</li>
-        <li><strong>CSS3:</strong> Flexbox, Grid, animations, and responsive design</li>
-        <li><strong>JavaScript:</strong> ES6+ features, async programming, DOM manipulation</li>
-        <li><strong>React:</strong> Components, hooks, state management, routing</li>
-      </ul>
-      
-      <h3>Backend Technologies</h3>
-      <ul>
-        <li><strong>Node.js:</strong> Server-side JavaScript runtime</li>
-        <li><strong>Express.js:</strong> Web application framework</li>
-        <li><strong>MongoDB:</strong> NoSQL database and Mongoose ODM</li>
-        <li><strong>REST APIs:</strong> Design principles and implementation</li>
-      </ul>
-      
-      <h3>Final Project</h3>
-      <p>Built a full-stack social media application with features including:</p>
-      <ul>
-        <li>User authentication and authorization</li>
-        <li>Create, read, update, delete posts</li>
-        <li>Real-time chat functionality</li>
-        <li>Image upload and processing</li>
-        <li>Responsive design for mobile and desktop</li>
-      </ul>
-    `,
-    resources: [
-      {
-        type: "online",
-        title: "MDN Web Docs",
-        url: "https://developer.mozilla.org"
-      },
-      {
-        type: "textbook",
-        title: "Eloquent JavaScript",
-        author: "Marijn Haverbeke"
-      }
-    ]
-  },
-  {
-    id: 4,
-    title: "Database Systems",
-    description: "Comprehensive study of database design, SQL, and database management systems.",
-    instructor: "Dr. Wilson",
-    semester: "Fall 2023",
-    pdfUrl: "/assets/pdfs/database-systems-notes.pdf",
-    topics: [
-      "Relational Model",
-      "SQL Fundamentals",
-      "Database Design",
-      "Normalization",
-      "Indexing",
-      "Query Optimization",
-      "Transactions",
-      "Concurrency Control",
-      "NoSQL Databases"
-    ],
-    difficulty: "Intermediate",
-    duration: "15 weeks",
-    notes: `
-      <h2>Database Fundamentals</h2>
-      <p>This course covered the theoretical and practical aspects of database systems.</p>
-      
-      <h3>Relational Database Design</h3>
-      <p>Key principles of good database design:</p>
-      <ul>
-        <li>Entity-Relationship modeling</li>
-        <li>Normalization (1NF, 2NF, 3NF, BCNF)</li>
-        <li>Primary and foreign key constraints</li>
-        <li>Referential integrity</li>
-      </ul>
-      
-      <h3>SQL Mastery</h3>
-      <p>Covered advanced SQL concepts including:</p>
-      <ul>
-        <li>Complex joins and subqueries</li>
-        <li>Window functions and CTEs</li>
-        <li>Stored procedures and triggers</li>
-        <li>Performance optimization techniques</li>
-      </ul>
-    `,
-    resources: [
-      {
-        type: "textbook",
-        title: "Database System Concepts",
-        author: "Silberschatz, Galvin, and Gagne"
       }
     ]
   }

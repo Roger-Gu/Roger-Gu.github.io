@@ -50,38 +50,36 @@ nav {
     color: #0066cc;
 }
 
-/* Dropdown Styling */
-.dropdown-menu {
-    display: none;  /* Initially hidden */
-    position: absolute;
-    background-color: #444;
-    min-width: 180px;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    border-radius: 5px;
-    z-index: 1000;  /* Ensure it stays on top */
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-.dropdown-menu li {
-    width: 100%;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-.dropdown-menu a {
-    padding: 10px;
-    color: white;
-    display: block;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-menu {
-    display: block;
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-/* Hover effect */
-.nav-links a:hover,
-.dropdown-menu a:hover {
-    background-color: #555;
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
 }
 
 /* Main Content */

@@ -20,8 +20,6 @@ const App = () => {
             className="text-xl font-bold text-gray-800 cursor-pointer"
             onClick={() => {
               setActiveSection('home');
-              setSelectedBlogPost(null);
-              setSelectedCourse(null);
             }}
           >
             My Website
@@ -29,16 +27,15 @@ const App = () => {
           <div className="flex space-x-6">
             {[
               { id: 'home', label: 'Home', icon: Home },
-              { id: 'blog', label: 'Blog', icon: FileText },
+              { id: 'blog', label: '观林碎语', icon: FileText },
               { id: 'courses', label: 'Courses', icon: Book },
+              { id: 'coc', label: 'Call of Cthulhu', icon: FileText },
               { id: 'about', label: 'About', icon: User }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => {
                   setActiveSection(id);
-                  setSelectedBlogPost(null);
-                  setSelectedCourse(null);
                 }}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${activeSection === id
                     ? 'bg-blue-100 text-blue-700'

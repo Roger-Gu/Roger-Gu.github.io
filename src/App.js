@@ -4,11 +4,11 @@ import { FileText, Book, Home, User, Download, ExternalLink, Clock, Tag } from '
 // Import data from separate files
 import { blogPosts, getRecentBlogPosts } from './data/blogPosts';
 import { courses } from './data/courses';
+import { rulesCOC } from './data/rulesCOC';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogPost, setSelectedBlogPost] = useState(null);
-  // eslint-disable-next-line no-unused-vars
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -60,7 +60,7 @@ const App = () => {
         <div className="text-center py-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to My Website</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            A place for my thoughts, blog posts, and course notes. Explore my journey through technology and learning.
+            A place for my thoughts, blog posts, course notes, and Call of Cthulhu TRPG games.
           </p>
         </div>
 
@@ -432,6 +432,42 @@ const App = () => {
     );
   };  
 
+    const COCPage = () => (
+    <div className="max-w-3xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu</h1>
+      </div>
+
+      <div className="bg-white p-8 rounded-lg shadow-sm border">
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          欢迎来到克苏鲁的呼唤！准备好掉SAN吧！
+        </p>
+
+        <div className="border-t pt-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">规则</h2>
+          <p>以下是一些克苏鲁呼唤的跑团规则。</p>
+          <ul className="space-y-2 text-gray-700">
+            {rulesCOC.map(rule => (
+              <li key={rule.id} className="flex items-center">
+                <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
+                  {rule.id}
+                </span>
+                <a 
+                  href={rule.pdfUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  {rule.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
   const AboutPage = () => (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-8">
@@ -466,6 +502,7 @@ const App = () => {
     switch (activeSection) {
       case 'blog': return <BlogPage />;
       case 'courses': return <CoursesPage />;
+      case 'coc': return <COCPage />;
       case 'about': return <AboutPage />;
       default: return <HomePage />;
     }

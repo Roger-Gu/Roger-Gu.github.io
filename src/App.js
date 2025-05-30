@@ -7,48 +7,6 @@ import { courses, getCourseById, getAllTopics, getDifficultyLevels } from './dat
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
 
-  // Sample data - you can easily manage this
-  const blogPosts = [
-    {
-      id: 1,
-      title: "My First Blog Post",
-      date: "2025-03-29",
-      excerpt: "This is a preview of my first blog post. Click to read more.",
-      content: "Full content of the blog post goes here..."
-    },
-    {
-      id: 2,
-      title: "Learning React",
-      date: "2025-03-28",
-      excerpt: "My journey learning React and building this website.",
-      content: "Detailed content about learning React..."
-    }
-  ];
-
-  const courses = [
-    {
-      id: 1,
-      title: "Machine Learning",
-      description: "Course notes and materials from my Machine Learning class.",
-      pdfUrl: "/assets/pdfs/machine-learning-notes.pdf",
-      topics: ["Linear Regression", "Neural Networks", "Deep Learning"]
-    },
-    {
-      id: 2,
-      title: "Data Structures",
-      description: "Comprehensive notes on data structures and algorithms.",
-      pdfUrl: "/assets/pdfs/data-structures-notes.pdf",
-      topics: ["Arrays", "Linked Lists", "Trees", "Graphs"]
-    },
-    {
-      id: 3,
-      title: "Web Development",
-      description: "Full-stack web development course materials.",
-      pdfUrl: "/assets/pdfs/web-dev-notes.pdf",
-      topics: ["HTML/CSS", "JavaScript", "React", "Node.js"]
-    }
-  ];
-
   const Navigation = () => (
     <nav className="bg-white shadow-sm border-b">
       <div className="max-w-6xl mx-auto px-4">

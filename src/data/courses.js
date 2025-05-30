@@ -3,20 +3,19 @@
 export const courses = [
   {
     id: 1,
-    title: "Machine Learning Fundamentals",
-    description: "Comprehensive course covering the foundations of machine learning algorithms and applications.",
-    instructor: "Dr. Smith",
-    semester: "Fall 2024",
-    pdfUrl: "/assets/pdfs/machine-learning-notes.pdf",
+    title: "Pmath451 Measure Theory",
+    description: "An introduction to measure theory and Lebesgue spaces.",
+    instructor: "M. Kennedy, M. Brannan",
+    semester: "Fall 2024, Winter 2025",
+    pdfUrl: "/assets/pdfs/courses/PMATH_451_Measure_Theory_Notes.pdf",
     topics: [
-      "Linear Regression",
-      "Logistic Regression", 
-      "Decision Trees",
-      "Neural Networks",
-      "Deep Learning",
-      "Support Vector Machines",
-      "Clustering Algorithms",
-      "Feature Engineering"
+      "Measure Theory",
+      "Borel Sets",
+      "Integration",
+      "Lebesgue Integration",
+      "Lebesgue Spaces",
+      "convolution",
+      "Fourier Transform"
     ],
     difficulty: "Intermediate",
     duration: "16 weeks",

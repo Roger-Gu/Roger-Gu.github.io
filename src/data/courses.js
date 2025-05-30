@@ -28,7 +28,7 @@ export const courses = [
         <li>General measures and measurability</li>
         <li>Caratheodory Extension theorem and construction of measures</li>
         <li>Integration theory, convergence theorems</li>
-        <li>Measure on Locally compact Hausdorff spaces</li>.
+        <li>Measure on Locally compact Hausdorff spaces</li>
         <li>Urysohn's lemma, Radon-Nikodym theorem</li>
         <li>Lp-spaces</li>
         <li>Product measures, Fubini's theorem</li>

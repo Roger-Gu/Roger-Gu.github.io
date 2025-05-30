@@ -10,6 +10,7 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogPost, setSelectedBlogPost] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedCOCRule, setSelectedCOCRule] = useState(null);
   const [selectedTag, setSelectedTag] = useState(null);
 
   const Navigation = () => (
@@ -432,41 +433,94 @@ const App = () => {
     );
   };  
 
-    const COCPage = () => (
-    <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu</h1>
-      </div>
-
-      <div className="bg-white p-8 rounded-lg shadow-sm border">
-        <p className="text-gray-700 mb-6 leading-relaxed">
-          欢迎来到克苏鲁的呼唤！准备好掉SAN吧！
-        </p>
-
-        <div className="border-t pt-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">规则</h2>
-          <p>以下是一些克苏鲁呼唤的跑团规则。</p>
-          <ul className="space-y-2 text-gray-700">
-            {rulesCOC.map(rule => (
-              <li key={rule.id} className="flex items-center">
-                <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
-                  {rule.id}
-                </span>
+    const COCPage = () => {
+    if (selectedCOCRule) {
+      return (
+        <div className="max-w-4xl mx-auto">
+          <button 
+            onClick={() => setSelectedCOCRule(null)}
+            className="mb-6 text-green-600 hover:text-green-800 font-medium"
+          >
+            ← 返回COC主界面
+          </button>
+          
+          <div className="bg-white p-8 rounded-lg shadow-sm border">
+            <div className="flex justify-between items-start mb-6">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">{selectedCOCRule.title}</h1>
+                <p className="text-gray-600 mb-4">{selectedCOCRule.description}</p>
+              </div>
+              <div className="flex space-x-2 ml-4">
                 <a 
+                  href={selectedCOCRule.pdfUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+                >
+                  <ExternalLink size={16} />
+                  <span>View PDF</span>
+                </a>
+                <a 
+                  href={selectedCOCRule.pdfUrl} 
+                  download
+                  className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+                >
+                  <Download size={16} />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu!!!</h1>
+          <p className="text-gray-600">一起堕入深渊；一起吟诵诅咒；一起掉SAN吧！！！</p>
+        </div>
+
+        <div className="grid gap-6">
+          {rulesCOC.map(rule => (
+            <div key={rule.id} className="bg-white p-6 rounded-lg shadow-sm border">
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex-1">
+                  <h2 
+                    className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                    onClick={() => setSelectedCOCRule(rule)}
+                  >
+                    {rule.title}
+                  </h2>
+                  <p className="text-gray-600 mb-3">{rule.description}</p>
+                </div>
+                <div className="flex space-x-2 ml-4">
+                  <a 
                   href={rule.pdfUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800"
+                  className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
                 >
-                  {rule.title}
+                  <ExternalLink size={16} />
+                  <span>View PDF</span>
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+                <a 
+                  href={rule.pdfUrl} 
+                  download
+                  className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+                >
+                  <Download size={16} />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          ))}
       </div>
     </div>
-  );
+    );
+  };  
 
   const AboutPage = () => (
     <div className="max-w-3xl mx-auto">

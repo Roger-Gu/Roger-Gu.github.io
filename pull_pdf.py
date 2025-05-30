@@ -71,7 +71,7 @@ def download_google_doc_as_pdf(doc_url, output_folder, filename=None):
         return None
 
 def main():
-    OUTPUT_FOLDER = r"C:\Users\gyx00\OneDrive - University of Waterloo\Roger-Gu.github.io\docs\assets\pdfs\COC"
+    OUTPUT_FOLDER = r"C:\Roger-Gu.github.io\public\assets\pdfs\COC"
     download_list = [
         {
         "filename": "第三世界.pdf",

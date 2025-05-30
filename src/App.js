@@ -111,6 +111,7 @@ const App = () => {
             <button className="text-blue-600 hover:text-blue-800 font-medium">
               Read more →
             </button>
+            <p className="text-gray-700">{post.content}</p>
           </article>
         ))}
       </div>
@@ -177,7 +178,7 @@ const App = () => {
       
       <div className="bg-white p-8 rounded-lg shadow-sm border">
         <p className="text-gray-700 mb-6 leading-relaxed">
-          Welcome to my personal website! I'm passionate about technology, learning, and sharing knowledge. 
+          Welcome to my personal website! I'm passionate about Mathematics, Physics, and Call of Cthulhu!!! 
           This site serves as a platform where I document my learning journey, share insights through blog posts, 
           and organize my course materials.
         </p>
@@ -190,10 +191,9 @@ const App = () => {
         <div className="border-t pt-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">What You'll Find Here</h2>
           <ul className="space-y-2 text-gray-700">
-            <li>• Blog posts about technology, programming, and personal experiences</li>
+            <li>• Blog posts about my thoughts and experiences</li>
             <li>• Comprehensive course notes from my academic studies</li>
-            <li>• Resources and materials that might help other learners</li>
-            <li>• Updates on my projects and learning progress</li>
+            <li>• Call of Cthulhu TRPG games!!!</li>
           </ul>
         </div>
       </div>

@@ -137,6 +137,170 @@ const App = () => {
     </div>
   );
 
+  const BlogPage = () => {
+    if (selectedBlogPost) {
+      return (
+        <div className="max-w-4xl mx-auto">
+          <button 
+            onClick={() => setSelectedBlogPost(null)}
+            className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
+          >
+            ← Back to all posts
+          </button>
+          
+          <article className="bg-white p-8 rounded-lg shadow-sm border">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{selectedBlogPost.title}</h1>
+            <div className="flex items-center space-x-4 text-gray-500 text-sm mb-6">
+              <span className="flex items-center">
+                <Clock size={14} className="mr-1" />
+                {selectedBlogPost.date}
+              </span>
+              <span>{selectedBlogPost.readTime}</span>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 mb-6">
+              {selectedBlogPost.tags.map(tag => (
+                <span 
+                  key={tag} 
+                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+                  onClick={() => {
+                    setSelectedTag(tag);
+                    setSelectedBlogPost(null);
+                  }}
+                >
+                  <Tag size={12} className="inline mr-1" />
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <div 
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: selectedBlogPost.content }}
+            />
+          </article>
+        </div>
+      );
+    }
+
+    const displayPosts = selectedTag 
+      ? blogPosts.filter(post => post.tags.includes(selectedTag))
+      : blogPosts;
+
+    return (
+      <div className="space-y-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            {selectedTag ? `Posts tagged "${selectedTag}"` : 'Blog Posts'}
+          </h1>
+          <p className="text-gray-600">My thoughts and experiences</p>
+          
+          {selectedTag && (
+            <button 
+              onClick={() => setSelectedTag(null)}
+              className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
+            >
+              ← View all posts
+            </button>
+          )}
+        </div>
+
+        <div className="space-y-6">
+          {displayPosts.map(post => (
+            <article key={post.id} className="bg-white p-6 rounded-lg shadow-sm border">
+              <h2 
+                className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-blue-600"
+                onClick={() => setSelectedBlogPost(post)}
+              >
+                {post.title}
+              </h2>
+              <div className="flex items-center space-x-4 text-gray-500 text-sm mb-4">
+                <span className="flex items-center">
+                  <Clock size={14} className="mr-1" />
+                  {post.date}
+                </span>
+                <span>{post.readTime}</span>
+              </div>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map(tag => (
+                  <span 
+                    key={tag} 
+                    className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
+                    onClick={() => setSelectedTag(tag)}
+                  >
+                    <Tag size={12} className="inline mr-1" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <p className="text-gray-700 mb-4">{post.excerpt}</p>
+              <button 
+                onClick={() => setSelectedBlogPost(post)}
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Read more →
+              </button>
+            </article>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const CoursesPage = () => (
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Course Notes</h1>
+        <p className="text-gray-600">My academic journey and learning resources</p>
+      </div>
+
+      <div className="grid gap-6">
+        {courses.map(course => (
+          <div key={course.id} className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">{course.title}</h2>
+                <p className="text-gray-600 mb-4">{course.description}</p>
+              </div>
+              <div className="flex space-x-2 ml-4">
+                <a 
+                  href={course.pdfUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+                >
+                  <ExternalLink size={16} />
+                  <span>View</span>
+                </a>
+                <a 
+                  href={course.pdfUrl} 
+                  download
+                  className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+                >
+                  <Download size={16} />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="font-medium text-gray-900 mb-2">Topics Covered:</h3>
+              <div className="flex flex-wrap gap-2">
+                {course.topics.map(topic => (
+                  <span key={topic} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   const AboutPage = () => (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-8">
@@ -145,7 +309,7 @@ const App = () => {
       
       <div className="bg-white p-8 rounded-lg shadow-sm border">
         <p className="text-gray-700 mb-6 leading-relaxed">
-          Welcome to Roger's website! I'm passionate about Mathematics, Physics, and Call of Cthulhu!!! 
+          Welcome to my personal website! I'm passionate about technology, learning, and sharing knowledge. 
           This site serves as a platform where I document my learning journey, share insights through blog posts, 
           and organize my course materials.
         </p>
@@ -172,7 +336,6 @@ const App = () => {
     switch(activeSection) {
       case 'blog': return <BlogPage />;
       case 'courses': return <CoursesPage />;
-      case 'coc': return <CoCPage />;
       case 'about': return <AboutPage />;
       default: return <HomePage />;
     }

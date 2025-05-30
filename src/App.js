@@ -523,9 +523,9 @@ const App = () => {
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu!!!</h1>
           <p className="text-gray-600">一起堕入深渊；一起吟诵诅咒；一起掉SAN吧！！！</p>
+          <h2 className="text-gray-600">一些COC的规则</h2>
         </div>
-
-        <h2 className="text-gray-600">一些COC的规则</h2>
+        
         <div className="grid gap-6">
           {rulesCOC.map(rule => (
             <div key={rule.id} className="bg-white p-6 rounded-lg shadow-sm border">
@@ -563,7 +563,10 @@ const App = () => {
           ))}
       </div>
 
-      <h2 className="text-gray-600">我们的COC故事分处于两个世界观之中</h2>
+      <div className="text-center">
+        <h2 className="text-gray-600">我们的COC故事分处于两个世界观之中</h2>
+      </div>
+      
       <div className="grid gap-6">
           {COC_worlds.map(world => (
             <div key={world.id} className="bg-white p-6 rounded-lg shadow-sm border">

@@ -61,7 +61,7 @@ const App = () => {
     return (
       <div className="space-y-12">
         <div className="text-center py-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to My Website</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to Roger's Website</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             A place for my thoughts, blog posts, course notes, and Call of Cthulhu TRPG games.
           </p>
@@ -655,7 +655,7 @@ const App = () => {
       </main>
       <footer className="bg-white border-t mt-16">
         <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-600">
-          <p>&copy; 2025 My Website. All rights reserved.</p>
+          <p>&copy; 2025 Roger's Website. All rights reserved.</p>
         </div>
       </footer>
     </div>

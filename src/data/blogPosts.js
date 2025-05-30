@@ -3,98 +3,28 @@
 export const blogPosts = [
   {
     id: 1,
-    title: "My First Blog Post",
+    title: "突厥",
     date: "2025-03-29",
-    excerpt: "This is a preview of my first blog post. Click to read more.",
+    excerpt: "灵感来了写个小故事。",
     content: `
-      <h2>Welcome to My Blog</h2>
-      <p>This is my first blog post where I share my thoughts and experiences.</p>
-      
-      <h3>What I've Learned</h3>
-      <p>Starting this blog has been an exciting journey. Here are some key insights:</p>
-      <ul>
-        <li>Writing helps clarify thoughts</li>
-        <li>Sharing knowledge benefits everyone</li>
-        <li>Regular posting builds good habits</li>
-      </ul>
-      
-      <h3>Looking Forward</h3>
-      <p>I'm excited to continue sharing my learning journey with you all.</p>
+      <p>突厥者，匈奴之别种。其族善锻冶，世居西海，为索国锻奴。索国置监军以镇之，岁征利刃百口。功成则尽敛其器，不成则鞭笞加身，突厥苦之。</p>
+      <p>及索国衰微，突厥巧匠得淬火秘术，铸霜刃三十六口。是夜炉火映天，突厥聚而谋曰："吾侪执百炼之术，安能久为人役？"遂持新刃杀监军，尽收其兵。</p>
+      <p>然兵刃既得，部众日相攻伐。草场血浸三月，长老会于狼纛之下，共推阿史那为护刀大人，约曰："兵燹起则大人持刃，承平则分藏各家。"
+        未几阿史那卒，其子阿史德挟兵自专，暴虐更甚索国。部众欲讨之，然手无寸铁，死者甚众。终以皮绳夜缢阿史德，始得重分利器。然经此丧乱，部族衰微，遂往依高昌。</p>
+      <p>时高昌王方事征伐，欲得其刃，遣使谕曰："汝等自相残戮，皆因人各有兵，不能相容。何不十户为聚，择贤者掌兵？"突厥疑曰："其得兵之后，得无复效阿史德故事乎？"
+        使者对曰："可铭刻姓名于兵，又立血契为誓：兵依所刻，永属各户，唯暂付兵主。兵主失德，各户可各取其刃，另择兵主。兵主不予，众共讨之。有铭为记，有契为约，有众相保，可无虑也。"突厥大喜，乃从之。</p>
+      <p>使者复诱兵主曰："今众人以兵授汝，任实重也。使别部来攻，汝等各自为战，十户能御乎？"对曰："不能。"
+        使者曰："何不十聚为落，择百户统之？亦立契为誓，兵永属各聚，暂付百户。百户失德，各聚可各取其刃，另择百户。百户不予，众共讨之。"兵主悦而从之。如是层层推举，终使兵刃尽归数大人。</p>
+      <p>高昌王复召诸大人，厚赐爵禄，尽收其刃，更立新契，许其永为刃主。突厥皆喜，以为既保兵刃，又得王宠。</p>
+      <p>未几高昌役使日重，突厥不乐，欲投柔然。王乃遣铁勒别部持突厥旧刃来攻。突厥见刃大惊，忿然曰："契文明载，刀兵属我。今刃尚有我名，何来杀我？"</p>
+        乃执契遍示铁勒，又指铭文为记。铁勒视之曰：“刃诚汝之刃也，然今以刃授我者王也。我受王命，不识汝契。此汝聚之契，汝自寻兵主可也。”
+        突厥急诣兵主，兵主曰："契固在此，然刃在百户处，当诣百户。"诣百户，则曰："刃归大人，当诣王城。"</p>
+      <p>及奔王城，高昌胥吏阻之曰："契主乃尔等自择之大人，当寻彼辈。"突厥进退失据，而铁勒已追至。酋长笑曰："契在而刃失，何言汝兵？"
+        遂尽屠其部，唯遗一婴弃于荒野，为牝狼所乳，后为阿史那氏再兴之始。</p>
+      <p>秀林曰：突厥至死不悟，刀剑始终属己，何以终刃其颈？盖契约层累，名实相乖，终为所制。利器之患，不在锋芒，而在贪得之性。刀刃之属，不在契文，而在持刃之人。后世当鉴之，使勿复效突厥也！</p>
     `,
-    tags: ["personal", "blogging", "first-post"],
-    readTime: "3 min read"
-  },
-  {
-    id: 2,
-    title: "Learning React: My Journey",
-    date: "2025-03-28",
-    excerpt: "My journey learning React and building this website from scratch.",
-    content: `
-      <h2>Why I Chose React</h2>
-      <p>React has become one of the most popular JavaScript libraries for building user interfaces, and for good reason.</p>
-      
-      <h3>Key Benefits I've Discovered</h3>
-      <ul>
-        <li><strong>Component-Based Architecture:</strong> Makes code reusable and maintainable</li>
-        <li><strong>Virtual DOM:</strong> Improves performance</li>
-        <li><strong>Large Ecosystem:</strong> Tons of libraries and tools available</li>
-        <li><strong>Strong Community:</strong> Great support and learning resources</li>
-      </ul>
-      
-      <h3>Challenges I Faced</h3>
-      <p>Learning React wasn't without its challenges:</p>
-      <ul>
-        <li>Understanding JSX syntax initially</li>
-        <li>Grasping the concept of state management</li>
-        <li>Learning when to use hooks vs class components</li>
-      </ul>
-      
-      <h3>Resources That Helped</h3>
-      <p>Here are some resources that made my learning journey smoother:</p>
-      <ul>
-        <li>React Official Documentation</li>
-        <li>freeCodeCamp React Course</li>
-        <li>Building small projects like this website</li>
-      </ul>
-    `,
-    tags: ["react", "javascript", "learning", "web-development"],
-    readTime: "5 min read"
-  },
-  {
-    id: 3,
-    title: "Understanding Git and Version Control",
-    date: "2025-03-27",
-    excerpt: "A beginner's guide to Git and why version control is essential for any developer.",
-    content: `
-      <h2>What is Version Control?</h2>
-      <p>Version control is a system that tracks changes to files over time, allowing you to recall specific versions later.</p>
-      
-      <h3>Why Git?</h3>
-      <p>Git is the most popular version control system because it's:</p>
-      <ul>
-        <li>Distributed - every clone is a full backup</li>
-        <li>Fast - most operations are local</li>
-        <li>Flexible - supports various workflows</li>
-        <li>Reliable - strong integrity checks</li>
-      </ul>
-      
-      <h3>Essential Git Commands</h3>
-      <pre><code>git init          # Initialize a repository
-git add .         # Stage all changes
-git commit -m ""  # Commit with message
-git push          # Push to remote
-git pull          # Pull from remote</code></pre>
-      
-      <h3>Best Practices</h3>
-      <ul>
-        <li>Write clear, descriptive commit messages</li>
-        <li>Commit often, but make each commit meaningful</li>
-        <li>Use branches for features and experiments</li>
-        <li>Keep your repository clean and organized</li>
-      </ul>
-    `,
-    tags: ["git", "version-control", "development", "tutorial"],
-    readTime: "4 min read"
+    tags: ["借古喻今", "碎碎念", "秀林不论时事"],
+    readTime: "谁知道呢？"
   }
 ];
 

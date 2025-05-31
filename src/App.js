@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { FileText, Book, Home, User, Download, ExternalLink, Clock, Tag } from 'lucide-react';

@@ -41,6 +41,37 @@ export const courses = [
     ]
   },
   {
+    id: "phys454",
+    title: "Phys454 Advanced Quantum Theory",
+    description: "Mathematical structure and physical principles which underlie quantum theory.",
+    instructor: "Achim Kempf",
+    semester: "Fall 2023",
+    pdfUrl: "/assets/pdfs/courses/Phys454_Quantum_theory_Notes.pdf",
+    topics: [
+      "Hilbert Spaces",
+      "Quantum Operators",
+      "Quantum States",
+      "Quantum Measurements",
+      "Quantum Entanglement",
+      "Quantum Information Theory",
+    ],
+    difficulty: "Intermediate",
+    duration: "12 weeks",
+    notes: `
+      <h3>Chapters</h3>
+      <ul>
+        <li>To be updated</li>
+      </ul>
+    `,
+    resources: [
+      {
+        type: "online",
+        title: "Advanced Quantum Theory, AMATH 473/673, PHYS454 in Fall 2023",
+        url: "https://uwaterloo.ca/physics-of-information-lab/teaching/advanced-quantum-theory-amath-473673-phys454-fall-2023"
+      }
+    ]
+  },
+  {
     id: "test",
     title: "Data Structures and Algorithms(just a template for testing)",
     description: "A template for testing.",

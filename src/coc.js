@@ -349,10 +349,13 @@ export const COCModuleDetail = () => {
     return (
         <div className="max-w-4xl mx-auto">
             <button
-                onClick={() => navigate('/coc')}
+                onClick={() => {
+                    setSelectedTag(null);
+                    navigate('/coc/modules');
+                }}
                 className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
             >
-                ← 返回COC主界面
+                ← 返回全部COC模组
             </button>
 
             <article className="bg-white p-8 rounded-lg shadow-sm border">

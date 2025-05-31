@@ -549,7 +549,7 @@ const COCPage = () => {
 const COCRuleDetail = () => {
   const { ruleId } = useParams();
   const navigate = useNavigate();
-  const rule = rulesCOC.find(r => r.id === ruleId);
+  const rule = getRuleById(ruleId);
 
   if (!rule) {
     return <div>Rule not found</div>;

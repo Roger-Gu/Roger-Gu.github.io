@@ -10,7 +10,7 @@ import { COC_worlds } from './data/COC_worlds';
 
 const App = () => {
   return (
-    <Router basename="/https://roger-gu.github.io/"> {/* Replace with your actual repo name */}
+    <Router basename="https://roger-gu.github.io">
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="max-w-6xl mx-auto px-4 py-8">

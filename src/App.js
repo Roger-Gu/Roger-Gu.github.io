@@ -203,7 +203,8 @@ const BlogPage = () => {
 const BlogPostDetail = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
-//  const [selectedTag, setSelectedTag] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [selectedTag, setSelectedTag] = useState(null);
   const post = blogPosts.find(p => p.id === postId);
 
   if (!post) {

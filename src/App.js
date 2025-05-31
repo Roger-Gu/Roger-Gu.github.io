@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation,
 import { FileText, Book, Home, User, Download, ExternalLink, Clock, Tag } from 'lucide-react';
 
 // Import data from separate files
-import { blogPosts, getRecentBlogPosts } from './data/blogPosts';
-import { courses } from './data/courses';
-import { rulesCOC } from './data/COC_rules';
+import { blogPosts, getRecentBlogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
+import { courses, getCourseById } from './data/courses';
+import { rulesCOC, getRuleById } from './data/COC_rules';
 import { COC_worlds } from './data/COC_worlds';
 
 const Navigation = () => {
@@ -135,7 +135,7 @@ const BlogPage = () => {
   const navigate = useNavigate();
 
   const displayPosts = selectedTag
-    ? blogPosts.filter(post => post.tags.includes(selectedTag))
+    ? getBlogPostsByTag(selectedTag)
     : blogPosts;
 
   return (
@@ -205,7 +205,7 @@ const BlogPostDetail = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [selectedTag, setSelectedTag] = useState(null);
-  const post = blogPosts.find(p => p.id === postId);
+  const post = getBlogPostById(postId);
 
   if (!post) {
     return <div>Post not found</div>;
@@ -358,7 +358,7 @@ const CoursesPage = () => {
 const CourseDetail = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
-  const course = courses.find(c => c.id === courseId);
+  const course = getCourseById(courseId);
 
   if (!course) {
     return <div>Course not found</div>;
@@ -598,7 +598,7 @@ const COCRuleDetail = () => {
 const COCWorldDetail = () => {
   const { worldId } = useParams();
   const navigate = useNavigate();
-  const world = COC_worlds.find(w => w.id === worldId);
+  const world = COC_worlds.find(w => w.id === parseInt(worldId));
 
   if (!world) {
     return <div>World not found</div>;

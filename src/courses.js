@@ -64,11 +64,6 @@ export const CoursesPage = () => {
                             </div>
                         </div>
 
-                        <div
-                            className="prose max-w-none"
-                            dangerouslySetInnerHTML={{ __html: course.notes }}
-                        />
-
                         {course.resources && (
                             <div className="mt-8 pt-6 border-t">
                                 <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>

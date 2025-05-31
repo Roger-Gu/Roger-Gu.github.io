@@ -9,39 +9,41 @@ export const courses = [
     semester: "Fall 2024, Winter 2025",
     pdfUrl: "/assets/pdfs/courses/PMATH_451_Measure_Theory_Notes.pdf",
     topics: [
-      "Measure Theory",
-      "Borel Sets",
-      "Integration",
-      "Lebesgue Integration",
+      "General measures and measurability",
+      "Caratheodory Extension theorem and construction of measures",
+      "Integration theory, convergence theorems",
+      "Measure on Locally compact Hausdorff spaces",
       "Lebesgue Spaces",
-      "convolution",
-      "Fourier Transform"
+      "Product measures, Fubini's theorem",
+      "Signed and Complex measures",
+      "Dual of functional spaces",
+      "Convolution and Fourier Transform"
     ],
     difficulty: "Intermediate",
-    duration: "16 weeks",
+    duration: "12 weeks",
     notes: `
-      <h2>Course Overview</h2>
-      <p>This course provides a comprehensive introduction to machine learning, covering both theoretical foundations and practical applications.</p>
-      
-      <h3>Key Learning Outcomes</h3>
+      <h3>Chapters</h3>
       <ul>
-        <li>General measures and measurability</li>
-        <li>Caratheodory Extension theorem and construction of measures</li>
-        <li>Integration theory, convergence theorems</li>
-        <li>Measure on Locally compact Hausdorff spaces</li>
-        <li>Urysohn's lemma, Radon-Nikodym theorem</li>
+        <li>Measures</li>
+        <li>Intergration</li>
+        <li>Construction of measures</li>
+        <li>Borel Measures on Topological spaces</li>
+        <li>Lebesgue Spaces</li>
         <li>Lp-spaces</li>
-        <li>Product measures, Fubini's theorem</li>
-        <li>Complex measures and Duality</li>
+        <li>Complex measures</li>
+        <li>Dual of functional spaces</li>
+        <li>Product measures</li>
+        <li>Convolution and Fourier Transform</li>
+        <li>Bochner Spaces</li>
       </ul>
     `,
     resources: [
     ]
   },
   {
-    id: 2,
-    title: "Data Structures and Algorithms",
-    description: "In-depth study of fundamental data structures and algorithmic problem-solving techniques.",
+    id: "test",
+    title: "Data Structures and Algorithms(just a template for testing)",
+    description: "A template for testing.",
     instructor: "Prof. Johnson",
     semester: "Spring 2024",
     pdfUrl: "/assets/pdfs/data-structures-notes.pdf",

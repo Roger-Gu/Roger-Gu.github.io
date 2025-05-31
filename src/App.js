@@ -163,7 +163,7 @@ const AboutPage = () => (
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="max-w-6xl mx-auto px-4 py-8">

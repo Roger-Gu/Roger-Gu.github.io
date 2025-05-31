@@ -2,7 +2,7 @@
 
 export const courses = [
   {
-    id: 1,
+    id: "pmath451",
     title: "Pmath451 Measure Theory",
     description: "An introduction to measure theory and Lebesgue spaces.",
     instructor: "M. Kennedy, M. Brannan",
@@ -100,7 +100,7 @@ export const courses = [
 
 // Helper functions
 export const getCourseById = (id) => {
-  return courses.find(course => course.id === parseInt(id));
+  return courses.find(course => course.id === id);
 };
 
 export const getCoursesByDifficulty = (difficulty) => {

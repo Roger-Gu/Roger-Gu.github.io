@@ -6,7 +6,7 @@ import { getRecentBlogPosts } from './data/blogPosts';
 import { BlogPage, BlogPostDetail  } from './blogs';
 import { getCourses } from './data/courses';
 import { CoursesPage, CourseDetail } from './courses';
-import { COCPage, COCRuleDetail, COCWorldDetail } from './coc';
+import { COCPage, COCRuleDetail, COCWorldDetail, COCModuleDetail } from './coc';
 
 const Navigation = () => {
   const location = useLocation();
@@ -176,6 +176,7 @@ const App = () => {
             <Route path="/coc" element={<COCPage />} />
             <Route path="/coc/rules/:ruleId" element={<COCRuleDetail />} />
             <Route path="/coc/worlds/:worldId" element={<COCWorldDetail />} />
+            <Route path="/coc/modules/:moduleId" element={<COCModuleDetail />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>

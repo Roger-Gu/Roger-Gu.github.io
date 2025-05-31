@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams } from 'react-router-dom';
-import { FileText, Book, Home, User, Download, ExternalLink, Clock } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { FileText, Book, Home, User, Clock } from 'lucide-react';
 
 // Import data from separate files
 import { getRecentBlogPosts } from './data/blogPosts';

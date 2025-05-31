@@ -36,10 +36,10 @@ export const COC_modules = [
 export const getLastCOCModules = (count = 3) => {
   return COC_modules.slice(Math.max(COC_modules.length - count, 0));
 };
-export const getCOCModuleById = (id) => {
+export const getCOCModulesById = (id) => {
   return COC_modules.find(module => module.id === parseInt(id));
 };
 
-export const getCOCModuleByTag = (tag) => {
+export const getCOCModulesByTag = (tag) => {
   return COC_modules.filter(module => module.tags.includes(tag));
 };

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { rulesCOC, getRuleById } from './data/COC_rules';
 import { COC_worlds } from './data/COC_worlds';
-import { COC_modules, getLastCOCModules, getCOCModuleById, getCOCModuleByTag } from './data/COC_items';
+import { COC_modules, getLastCOCModules, getCOCModulesById, getCOCModulesByTag } from './data/COC_items';
 
 export const COCPage = () => {
     const navigate = useNavigate();
@@ -110,7 +110,7 @@ export const COCPage = () => {
             </div>
 
             <div className="grid gap-6">
-                {getLastCOCModules(1).map(module => (
+                {getLastCOCModules().map(module => (
                     <div key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex-1">
@@ -142,6 +142,16 @@ export const COCPage = () => {
                     </div>
                 ))}
             </div>
+
+            <button
+                onClick={() => {
+                    setSelectedTag(null);
+                    navigate(`/coc/modules`);
+                }}
+                className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
+            >
+                → 更多模组
+            </button>
         </div>
     );
 };
@@ -253,11 +263,84 @@ export const COCWorldDetail = () => {
     );
 };
 
+export const COCModulePage = () => {
+    const [selectedTag, setSelectedTag] = useState(null);
+    const navigate = useNavigate();
+
+    const displayModules = selectedTag
+        ? getCOCModulesByTag(selectedTag)
+        : COC_modules;
+
+    return (
+        <div className="space-y-8">
+            <div className="text-center">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                    {selectedTag ? `Modules tagged "${selectedTag}"` : 'Modules'}
+                </h1>
+                <p className="text-gray-600">秀林生原创系列</p>
+
+                {selectedTag ?
+                    (
+                        <button
+                            onClick={() => setSelectedTag(null)}
+                            className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
+                        >
+                            ← 返回全部COC模组
+                        </button>
+                    ) :
+                    (<button
+                        onClick={() => navigate('/coc')}
+                        className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                        ← 返回COC主界面
+                    </button>
+                    )
+                }
+
+            </div>
+
+            <div className="space-y-6">
+                {displayModules.map(module => (
+                    <div key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="flex-1">
+                                <h2
+                                    className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                                    onClick={() => navigate(`/coc/modules/${module.id}`)}
+                                >
+                                    {module.title}
+                                </h2>
+                                <p className="text-gray-600 mb-3">{module.description}</p>
+                                <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {module.tags.map(tag => (
+                                    <span
+                                        key={tag}
+                                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+                                        onClick={() => {
+                                            setSelectedTag(tag);
+                                            navigate('/coc/modules');
+                                        }}
+                                    >
+                                        <Tag size={12} className="inline mr-1" />
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 export const COCModuleDetail = () => {
     const { moduleId } = useParams();
     const navigate = useNavigate();
     const [, setSelectedTag] = useState(null);
-    const module = getCOCModuleById(moduleId);
+    const module = getCOCModulesById(moduleId);
 
     if (!module) {
         return <div>Module not found. 模组未找到。</div>;
@@ -294,10 +377,10 @@ export const COCModuleDetail = () => {
                 </div>
 
                 <p className="text-gray-600 mb-6 italic"
-                    dangerouslySetInnerHTML={{__html: module.authorWords.replace(/\n/g, '<br>')}}
+                    dangerouslySetInnerHTML={{ __html: module.authorWords.replace(/\n/g, '<br>') }}
                 />
                 <p className="text-gray-600 mb-6"
-                    dangerouslySetInnerHTML={{__html: module.background.replace(/\n/g, '<br>')}}
+                    dangerouslySetInnerHTML={{ __html: module.background.replace(/\n/g, '<br>') }}
                 />
             </article>
         </div>

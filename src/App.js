@@ -32,7 +32,7 @@ const Navigation = () => {
               { path: '/', label: 'Home', icon: Home },
               { path: '/blogs', label: '观林碎语', icon: FileText },
               { path: '/courses', label: 'Courses', icon: Book },
-              { path: '/coc', label: 'Call of Cthulhu', icon: () => <img src="/assets/images/奈亚之印记.jpg" alt="Call of Cthulhu icon" className="w-5 h-5" /> },
+              { path: '/coc', label: 'Call of Cthulhu', icon: () => <img src="/assets/images/coc-icon.png" alt="Call of Cthulhu icon" className="w-5 h-5" /> },
               { path: '/about', label: 'About', icon: User }
             ].map(({ path, label, icon: Icon }) => (
               <Link

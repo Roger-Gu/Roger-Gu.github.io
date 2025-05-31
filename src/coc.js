@@ -293,8 +293,12 @@ export const COCModuleDetail = () => {
                     ))}
                 </div>
 
-                <p className="text-gray-600 mb-6 italic">{"卷首语：" + module.authorWords}</p>
-                <p className="text-gray-600 mb-6">{"背景：" + module.background}</p>
+                <p className="text-gray-600 mb-6 italic"
+                    dangerouslySetInnerHTML={{__html: module.authorWords.replace(/\n/g, '<br>')}}
+                />
+                <p className="text-gray-600 mb-6"
+                    dangerouslySetInnerHTML={{__html: module.background.replace(/\n/g, '<br>')}}
+                />
             </article>
         </div>
     );

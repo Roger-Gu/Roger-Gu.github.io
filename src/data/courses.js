@@ -103,6 +103,10 @@ export const getCourseById = (id) => {
   return courses.find(course => course.id === id);
 };
 
+export const getCourses = (count = 3) => {
+  return courses.slice(0, count);
+};
+
 export const getCoursesByDifficulty = (difficulty) => {
   return courses.filter(course => course.difficulty === difficulty);
 };

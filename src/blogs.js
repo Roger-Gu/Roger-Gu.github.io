@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Clock, Tag } from 'lucide-react';
-import { blogPosts, getBlogPostById, getBlogPostsByTag } from './blogPosts';
+import { blogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
 
 export const BlogPage = () => {
     const [selectedTag, setSelectedTag] = useState(null);

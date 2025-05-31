@@ -1,45 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { FileText, Book, Home, User, Download, ExternalLink, Clock, Tag } from 'lucide-react';
 
 // Import data from separate files
-import { blogPosts, getRecentBlogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
-//import { courses, getCourseById, getCoursesByTopic } from './data/courses';
-//import { rulesCOC, getRuleById } from './data/COC_rules';
-//import { COC_worlds } from './data/COC_worlds';
-
-const App = () => {
-  return (
-    <Router basename="https://roger-gu.github.io">
-      <div className="min-h-screen bg-gray-50">
-        <Navigation />
-        <main className="max-w-6xl mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blogs" element={<BlogPage />} />
-            <Route path="/blogs/:postId" element={<BlogPostDetail />} />
-            {/* <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/courses/:courseId" element={<CourseDetail />} />
-            <Route path="/coc" element={<COCPage />} />
-            <Route path="/coc/rules/:ruleId" element={<COCRuleDetail />} />
-            <Route path="/coc/worlds/:worldId" element={<COCWorldDetail />} /> */}
-            <Route path="/about" element={<AboutPage />} />
-          </Routes>
-        </main>
-        <footer className="bg-white border-t mt-16">
-          <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-600">
-            <p>&copy; 2025 Roger's Website. All rights reserved.</p>
-          </div>
-        </footer>
-      </div>
-    </Router>
-  );
-};
+import { blogPosts, getRecentBlogPosts } from './data/blogPosts';
+import { courses } from './data/courses';
+import { rulesCOC } from './data/COC_rules';
+import { COC_worlds } from './data/COC_worlds';
 
 const Navigation = () => {
   const location = useLocation();
-
+  
   const isActive = (path) => {
     if (path === '/' && location.pathname === '/') return true;
     if (path !== '/' && location.pathname.startsWith(path)) return true;
@@ -67,10 +38,11 @@ const Navigation = () => {
               <Link
                 key={path}
                 to={path}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${isActive(path)
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${
+                  isActive(path)
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                }`}
               >
                 <Icon size={18} />
                 <span>{label}</span>
@@ -126,7 +98,7 @@ const HomePage = () => {
             View all posts →
           </Link>
         </div>
-{/* 
+
         <div className="bg-white p-6 rounded-lg shadow-sm border">
           <h2 className="text-2xl font-semibold mb-4 flex items-center">
             <Book className="mr-2 text-green-600" />
@@ -152,7 +124,7 @@ const HomePage = () => {
           >
             View all courses →
           </Link>
-        </div> */}
+        </div>
       </div>
     </div>
   );
@@ -163,7 +135,7 @@ const BlogPage = () => {
   const navigate = useNavigate();
 
   const displayPosts = selectedTag
-    ? getBlogPostsByTag(selectedTag)
+    ? blogPosts.filter(post => post.tags.includes(selectedTag))
     : blogPosts;
 
   return (
@@ -231,7 +203,8 @@ const BlogPage = () => {
 const BlogPostDetail = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
-  const post = getBlogPostById(postId);
+//  const [selectedTag, setSelectedTag] = useState(null);
+  const post = blogPosts.find(p => p.id === postId);
 
   if (!post) {
     return <div>Post not found</div>;
@@ -260,7 +233,11 @@ const BlogPostDetail = () => {
           {post.tags.map(tag => (
             <span
               key={tag}
-              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm"
+              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+              onClick={() => {
+                setSelectedTag(tag);
+                navigate('/blogs');
+              }}
             >
               <Tag size={12} className="inline mr-1" />
               {tag}
@@ -277,415 +254,394 @@ const BlogPostDetail = () => {
   );
 };
 
+const CoursesPage = () => {
+  const navigate = useNavigate();
 
-// const CoursesPage = () => {
-//   const [selectedTag, setSelectedTag] = useState(null);
-//   const navigate = useNavigate();
+  return (
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Course Notes</h1>
+        <p className="text-gray-600">My academic journey and learning resources</p>
+      </div>
 
-//   const displayCourses = selectedTag
-//     ? getCoursesByTopic(selectedTag)
-//     : blogPosts;
-//   return (
+      <div className="grid gap-6">
+        {courses.map(course => (
+          <div key={course.id} className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex-1">
+                <h2 
+                  className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                  onClick={() => navigate(`/courses/${course.id}`)}
+                >
+                  {course.title}
+                </h2>
+                <p className="text-gray-600 mb-3">{course.description}</p>
+                <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+                  <span>{course.semester}</span>
+                  <span>•</span>
+                  <span>{course.difficulty}</span>
+                  <span>•</span>
+                  <span>{course.duration}</span>
+                </div>
+              </div>
+              <div className="flex space-x-2 ml-4">
+                <a 
+                href={course.pdfUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+              >
+                <ExternalLink size={16} />
+                <span>View PDF</span>
+              </a>
+              <a 
+                href={course.pdfUrl} 
+                download
+                className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+              >
+                <Download size={16} />
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+          
+          <div className="mb-6">
+            <h3 className="font-medium text-gray-900 mb-3">Topics Covered:</h3>
+            <div className="flex flex-wrap gap-2">
+              {course.topics.map(topic => (
+                <span key={topic} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          <div 
+            className="prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: course.notes }}
+          />
+          
+          {course.resources && (
+            <div className="mt-8 pt-6 border-t">
+              <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>
+              <ul className="space-y-2">
+                {course.resources.map((resource, index) => (
+                  <li key={index} className="flex items-center">
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
+                      {resource.type}
+                    </span>
+                    {resource.url ? (
+                      <a 
+                        href={resource.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        {resource.title}
+                      </a>
+                    ) : (
+                      <span>{resource.title} by {resource.author}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+  );
+};
 
-//     <div className="space-y-8">
-//       <div className="text-center">
-//         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-//           {selectedTag ? `Posts tagged "${selectedTag}"` : 'Blog Posts'}
-//         </h1>
-//         <p className="text-gray-600">Course Notes</p>
-//         <p className="text-gray-600">My academic journey and learning resources</p>
+const CourseDetail = () => {
+  const { courseId } = useParams();
+  const navigate = useNavigate();
+  const course = courses.find(c => c.id === courseId);
 
-//         {selectedTag && (
-//           <button
-//             onClick={() => setSelectedTag(null)}
-//             className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
-//           >
-//             ← View all courses
-//           </button>
-//         )}
-//       </div>
+  if (!course) {
+    return <div>Course not found</div>;
+  }
 
-//       <div className="space-y-6">
-//         {displayCourses.map(course => (
-//           <div key={course.id} className="bg-white p-6 rounded-lg shadow-sm border">
-//             <div className="flex justify-between items-start mb-4">
-//               <div className="flex-1">
-//                 <h2
-//                   className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-blue-600"
-//                   onClick={() => navigate(`/blogs/${course.id}`)}
-//                 >
-//                   {course.title}
-//                 </h2>
-//                 <p className="text-gray-600 mb-3">{course.description}</p>
-//                 <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
-//                   <span>{course.semester}</span>
-//                   <span>•</span>
-//                   <span>{course.difficulty}</span>
-//                   <span>•</span>
-//                   <span>{course.duration}</span>
-//                 </div>
-//               </div>
-//               <div className="flex space-x-2 ml-4">
-//                 <a
-//                   href={course.pdfUrl}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//                 >
-//                   <ExternalLink size={16} />
-//                   <span>View PDF</span>
-//                 </a>
-//                 <a
-//                   href={course.pdfUrl}
-//                   download
-//                   className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//                 >
-//                   <Download size={16} />
-//                   <span>Download</span>
-//                 </a>
-//               </div>
-//             </div>
+  return (
+    <div className="max-w-4xl mx-auto">
+      <button 
+        onClick={() => navigate('/courses')}
+        className="mb-6 text-green-600 hover:text-green-800 font-medium"
+      >
+        ← Back to all courses
+      </button>
+      
+      <div className="bg-white p-8 rounded-lg shadow-sm border">
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{course.title}</h1>
+            <p className="text-gray-600 mb-4">{course.description}</p>
+            <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
+              <div>Instructor: {course.instructor}</div>
+              <div>Semester: {course.semester}</div>
+              <div>Difficulty: {course.difficulty}</div>
+              <div>Duration: {course.duration}</div>
+            </div>
+          </div>
+          <div className="flex space-x-2 ml-4">
+            <a 
+              href={course.pdfUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+            >
+              <ExternalLink size={16} />
+              <span>View PDF</span>
+            </a>
+            <a 
+              href={course.pdfUrl} 
+              download
+              className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+            >
+              <Download size={16} />
+              <span>Download</span>
+            </a>
+          </div>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="font-medium text-gray-900 mb-3">Topics Covered:</h3>
+          <div className="flex flex-wrap gap-2">
+            {course.topics.map(topic => (
+              <span key={topic} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                {topic}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div 
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: course.notes }}
+        />
+        
+        {course.resources && (
+          <div className="mt-8 pt-6 border-t">
+            <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>
+            <ul className="space-y-2">
+              {course.resources.map((resource, index) => (
+                <li key={index} className="flex items-center">
+                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
+                    {resource.type}
+                  </span>
+                  {resource.url ? (
+                    <a 
+                      href={resource.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      {resource.title}
+                    </a>
+                  ) : (
+                    <span>{resource.title} by {resource.author}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-//             <div className="mb-6">
-//               <h3 className="font-medium text-gray-900 mb-3">Topics Covered:</h3>
-//               <div className="flex flex-wrap gap-2">
-//                 {course.topics.map(topic => (
-//                   <span
-//                     key={topic}
-//                     className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-//                     onClick={() => setSelectedTag(topic)}
-//                     {topic}
-//                   </span>
-//                 ))}
-//               </div>
-//             </div>
+const COCPage = () => {
+  const navigate = useNavigate();
 
-//             <div
-//               className="prose max-w-none"
-//               dangerouslySetInnerHTML={{ __html: course.notes }}
-//             />
+  return (
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu!!!</h1>
+        <p className="text-gray-600">一起堕入深渊；一起吟诵诅咒；一起掉SAN吧！！！</p>          
+      </div>
+      <div className="text-center"> 
+        <h2 className="text-gray-700">以下是一些COC的规则</h2>
+      </div>        
+      <div className="grid gap-6">
+        {rulesCOC.map(rule => (
+          <div key={rule.id} className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex-1">
+                <h2 
+                  className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                  onClick={() => navigate(`/coc/rules/${rule.id}`)}
+                >
+                  {rule.title}
+                </h2>
+                <p className="text-gray-600 mb-3">{rule.description}</p>
+              </div>
+              <div className="flex space-x-2 ml-4">
+                <a 
+                href={rule.pdfUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+              >
+                <ExternalLink size={16} />
+                <span>View PDF</span>
+              </a>
+              <a 
+                href={rule.pdfUrl} 
+                download
+                className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+              >
+                <Download size={16} />
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+        </div>          
+        ))}
+    </div>
 
-//             {course.resources && (
-//               <div className="mt-8 pt-6 border-t">
-//                 <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>
-//                 <ul className="space-y-2">
-//                   {course.resources.map((resource, index) => (
-//                     <li key={index} className="flex items-center">
-//                       <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
-//                         {resource.type}
-//                       </span>
-//                       {resource.url ? (
-//                         <a
-//                           href={resource.url}
-//                           target="_blank"
-//                           rel="noopener noreferrer"
-//                           className="text-blue-600 hover:text-blue-800"
-//                         >
-//                           {resource.title}
-//                         </a>
-//                       ) : (
-//                         <span>{resource.title} by {resource.author}</span>
-//                       )}
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             )}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-// const CourseDetail = () => {
-//   const { courseId } = useParams();
-//   const navigate = useNavigate();
-//   const course = getCourseById(courseId);
+    <div className="text-center">
+      <h2 className="text-gray-700">我们的COC故事分处于两个世界观之中</h2>
+    </div>
+    
+    <div className="grid gap-6">
+        {COC_worlds.map(world => (
+          <div key={world.id} className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex-1">
+                <h2 
+                  className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                  onClick={() => navigate(`/coc/worlds/${world.id}`)}
+                >
+                  {world.title}
+                </h2>
+                <p className="text-gray-600 mb-3">{world.description}</p>
+              </div>
+              <div className="flex space-x-2 ml-4">
+                <a 
+                href={world.pdfUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+              >
+                <ExternalLink size={16} />
+                <span>View PDF</span>
+              </a>
+              <a 
+                href={world.pdfUrl} 
+                download
+                className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+              >
+                <Download size={16} />
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+        </div>          
+        ))}
+    </div>
+  </div>
+  );
+};
 
-//   if (!course) {
-//     return <div>Course not found</div>;
-//   }
+const COCRuleDetail = () => {
+  const { ruleId } = useParams();
+  const navigate = useNavigate();
+  const rule = rulesCOC.find(r => r.id === ruleId);
 
-//   return (
-//     <div className="max-w-4xl mx-auto">
-//       <button
-//         onClick={() => navigate('/courses')}
-//         className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
-//       >
-//         ← Back to all courses
-//       </button>
+  if (!rule) {
+    return <div>Rule not found</div>;
+  }
 
+  return (
+    <div className="max-w-4xl mx-auto">
+      <button 
+        onClick={() => navigate('/coc')}
+        className="mb-6 text-green-600 hover:text-green-800 font-medium"
+      >
+        ← 返回COC主界面
+      </button>
+      
+      <div className="bg-white p-8 rounded-lg shadow-sm border">
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{rule.title}</h1>
+            <p className="text-gray-600 mb-4">{rule.description}</p>
+          </div>
+          <div className="flex space-x-2 ml-4">
+            <a 
+              href={rule.pdfUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+            >
+              <ExternalLink size={16} />
+              <span>View PDF</span>
+            </a>
+            <a 
+              href={rule.pdfUrl} 
+              download
+              className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+            >
+              <Download size={16} />
+              <span>Download</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
+const COCWorldDetail = () => {
+  const { worldId } = useParams();
+  const navigate = useNavigate();
+  const world = COC_worlds.find(w => w.id === worldId);
 
-//       <article className="bg-white p-8 rounded-lg shadow-sm border">
-//         <h1 className="text-3xl font-bold text-gray-900 mb-4">{course.title}</h1>
-//         <p className="text-gray-600 mb-3">{course.description}</p>
-//         <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
-//           <span>{course.semester}</span>
-//           <span>•</span>
-//           <span>{course.difficulty}</span>
-//           <span>•</span>
-//           <span>{course.duration}</span>
-//         </div>
+  if (!world) {
+    return <div>World not found</div>;
+  }
 
-//         <div className="flex space-x-2 ml-4">
-//           <a
-//             href={course.pdfUrl}
-//             target="_blank"
-//             rel="noopener noreferrer"
-//             className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//           >
-//             <ExternalLink size={16} />
-//             <span>View PDF</span>
-//           </a>
-//           <a
-//             href={course.pdfUrl}
-//             download
-//             className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//           >
-//             <Download size={16} />
-//             <span>Download</span>
-//           </a>
-//         </div>
-
-//         <div className="mb-6">
-//           <h3 className="font-medium text-gray-900 mb-3">Topics Covered:</h3>
-//           <div className="flex flex-wrap gap-2">
-//             {course.topics.map(topic => (
-//               <span
-//                 key={topic}
-//                 className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-//                 {topic}
-//               </span>
-//             ))}
-//           </div>
-//         </div>
-
-//         <div
-//           className="prose max-w-none"
-//           dangerouslySetInnerHTML={{ __html: course.notes }}
-//         />
-
-//         {course.resources && (
-//           <div className="mt-8 pt-6 border-t">
-//             <h3 className="font-medium text-gray-900 mb-3">Additional Resources:</h3>
-//             <ul className="space-y-2">
-//               {course.resources.map((resource, index) => (
-//                 <li key={index} className="flex items-center">
-//                   <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-3">
-//                     {resource.type}
-//                   </span>
-//                   {resource.url ? (
-//                     <a
-//                       href={resource.url}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                       className="text-blue-600 hover:text-blue-800"
-//                     >
-//                       {resource.title}
-//                     </a>
-//                   ) : (
-//                     <span>{resource.title} by {resource.author}</span>
-//                   )}
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         )}
-//       </article>
-//     </div>
-//   );
-// };
-
-// const COCPage = () => {
-//   const navigate = useNavigate();
-//   return (
-//     <div className="space-y-8">
-//       <div className="text-center">
-//         <h1 className="text-3xl font-bold text-gray-900 mb-4">Call of Cthulhu!!!</h1>
-//         <p className="text-gray-600">一起堕入深渊；一起吟诵诅咒；一起掉SAN吧！！！</p>
-//       </div>
-//       <div className="text-center">
-//         <h2 className="text-gray-700">以下是一些COC的规则</h2>
-//       </div>
-//       <div className="grid gap-6">
-//         {rulesCOC.map(rule => (
-//           <div key={rule.id} className="bg-white p-6 rounded-lg shadow-sm border">
-//             <div className="flex justify-between items-start mb-4">
-//               <div className="flex-1">
-//                 <h2
-//                   className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
-//                   onClick={() => navigate(`/coc/rules/${rule.id}`)}
-//                 >
-//                   {rule.title}
-//                 </h2>
-//                 <p className="text-gray-600 mb-3">{rule.description}</p>
-//               </div>
-//               <div className="flex space-x-2 ml-4">
-//                 <a
-//                   href={rule.pdfUrl}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//                 >
-//                   <ExternalLink size={16} />
-//                   <span>View PDF</span>
-//                 </a>
-//                 <a
-//                   href={rule.pdfUrl}
-//                   download
-//                   className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//                 >
-//                   <Download size={16} />
-//                   <span>Download</span>
-//                 </a>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-
-//       <div className="text-center">
-//         <h2 className="text-gray-700">我们的COC故事分处于两个世界观之中</h2>
-//       </div>
-
-//       <div className="grid gap-6">
-//         {COC_worlds.map(world => (
-//           <div key={world.id} className="bg-white p-6 rounded-lg shadow-sm border">
-//             <div className="flex justify-between items-start mb-4">
-//               <div className="flex-1">
-//                 <h2
-//                   className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
-//                   onClick={() => navigate(`/coc/worlds/${world.id}`)}
-//                 >
-//                   {world.title}
-//                 </h2>
-//                 <p className="text-gray-600 mb-3">{world.description}</p>
-//               </div>
-//               <div className="flex space-x-2 ml-4">
-//                 <a
-//                   href={world.pdfUrl}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//                 >
-//                   <ExternalLink size={16} />
-//                   <span>View PDF</span>
-//                 </a>
-//                 <a
-//                   href={world.pdfUrl}
-//                   download
-//                   className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//                 >
-//                   <Download size={16} />
-//                   <span>Download</span>
-//                 </a>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
-
-// const COCRuleDetail = () => {
-//   const { ruleId } = useParams();
-//   const navigate = useNavigate();
-//   const rule = getRuleById(ruleId);
-
-//   if (!rule) {
-//     return <div>Post not found</div>;
-//   }
-
-//   return (
-//     <div className="max-w-4xl mx-auto">
-//       <button
-//         onClick={() => navigate('/coc')}
-//         className="mb-6 text-green-600 hover:text-green-800 font-medium"
-//       >
-//         ← 返回COC主界面
-//       </button>
-
-//       <div className="bg-white p-8 rounded-lg shadow-sm border">
-//         <div className="flex justify-between items-start mb-6">
-//           <div>
-//             <h1 className="text-3xl font-bold text-gray-900 mb-2">{rule.title}</h1>
-//             <p className="text-gray-600 mb-4">{rule.description}</p>
-//           </div>
-//           <div className="flex space-x-2 ml-4">
-//             <a
-//               href={rule.pdfUrl}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//             >
-//               <ExternalLink size={16} />
-//               <span>View PDF</span>
-//             </a>
-//             <a
-//               href={rule.pdfUrl}
-//               download
-//               className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//             >
-//               <Download size={16} />
-//               <span>Download</span>
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const COCWorldDetail = () => {
-//   const { worldId } = useParams();
-//   const navigate = useNavigate();
-//   const world =  COC_worlds.find(world => world.id === worldId);
-
-//   if (!world) {
-//     return <div>Post not found</div>;
-//   }
-
-//   return (
-//     <div className="max-w-4xl mx-auto">
-//       <button
-//         onClick={() => navigate('/coc')}
-//         className="mb-6 text-green-600 hover:text-green-800 font-medium"
-//       >
-//         ← 返回COC主界面
-//       </button>
-
-//       <div className="bg-white p-8 rounded-lg shadow-sm border">
-//         <div className="flex justify-between items-start mb-6">
-//           <div>
-//             <h1 className="text-3xl font-bold text-gray-900 mb-2">{world.title}</h1>
-//             <p className="text-gray-600 mb-4">{world.description}</p>
-//           </div>
-//           <div className="flex space-x-2 ml-4">
-//             <a
-//               href={world.pdfUrl}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-//             >
-//               <ExternalLink size={16} />
-//               <span>View PDF</span>
-//             </a>
-//             <a
-//               href={world.pdfUrl}
-//               download
-//               className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
-//             >
-//               <Download size={16} />
-//               <span>Download</span>
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+  return (
+    <div className="space-y-8">
+      <button 
+        onClick={() => navigate('/coc')}
+        className="mb-6 text-green-600 hover:text-green-800 font-medium"
+      >
+        ← 返回COC主界面
+      </button>
+      
+      <div className="bg-white p-8 rounded-lg shadow-sm border">
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{world.title}</h1>
+            <p className="text-gray-600 mb-4">{world.description}</p>
+          </div>
+          <div className="flex space-x-2 ml-4">
+            <a 
+              href={world.pdfUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+            >
+              <ExternalLink size={16} />
+              <span>View PDF</span>
+            </a>
+            <a 
+              href={world.pdfUrl} 
+              download
+              className="flex items-center space-x-1 bg-green-100 text-green-700 px-3 py-2 rounded-md hover:bg-green-200 transition-colors"
+            >
+              <Download size={16} />
+              <span>Download</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const AboutPage = () => (
   <div className="max-w-3xl mx-auto">
@@ -716,5 +672,33 @@ const AboutPage = () => (
     </div>
   </div>
 );
+
+const App = () => {
+  return (
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <main className="max-w-6xl mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/blogs" element={<BlogPage />} />
+            <Route path="/blogs/:postId" element={<BlogPostDetail />} />
+            <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/courses/:courseId" element={<CourseDetail />} />
+            <Route path="/coc" element={<COCPage />} />
+            <Route path="/coc/rules/:ruleId" element={<COCRuleDetail />} />
+            <Route path="/coc/worlds/:worldId" element={<COCWorldDetail />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </main>
+        <footer className="bg-white border-t mt-16">
+          <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2025 Roger's Website. All rights reserved.</p>
+          </div>
+        </footer>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

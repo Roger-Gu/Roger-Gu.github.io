@@ -71,6 +71,15 @@ export const COCPage = () => {
                             </div>
                             <div className="flex space-x-2 ml-4">
                                 <a
+                                    href={world.googleDocUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
+                                >
+                                    <ExternalLink size={16} />
+                                    <span>View Google Doc</span>
+                                </a>
+                                <a
                                     href={world.pdfUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -165,7 +174,7 @@ export const COCWorldDetail = () => {
 
             <div className="bg-white p-8 rounded-lg shadow-sm border">
                 <div className="flex justify-between items-start mb-6">
-                    <div>
+                    <div className="flex-1">
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{world.title}</h1>
                         <p className="text-gray-600 mb-4">{world.description}</p>
                     </div>

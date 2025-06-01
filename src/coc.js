@@ -1,6 +1,6 @@
 import { Download, ExternalLink, Tag } from 'lucide-react';
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { rulesCOC, getRuleById } from './data/COC_rules';
 import { COC_worlds } from './data/COC_worlds';
 import { COC_modules, getLastCOCModules, getCOCModulesById, getCOCModulesByTag } from './data/COC_items';
@@ -121,6 +121,7 @@ export const COCPage = () => {
                                     {module.title}
                                 </h2>
                                 <p className="text-gray-600 mb-3">{module.description}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
                                 <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-6">
@@ -130,7 +131,7 @@ export const COCPage = () => {
                                         className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                                         onClick={() => {
                                             setSelectedTag(tag);
-                                            navigate('/coc/modules');
+                                            navigate('/coc/modules?tag=' + tag);
                                         }}
                                     >
                                         <Tag size={12} className="inline mr-1" />
@@ -266,6 +267,16 @@ export const COCWorldDetail = () => {
 export const COCModulePage = () => {
     const [selectedTag, setSelectedTag] = useState(null);
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    // Get current tag from URL
+    const tag = searchParams.get("tag");
+    useEffect(() => {
+        if (tag) {
+            setSelectedTag(tag);
+        } else {
+            setSelectedTag(null);
+        }
+    }, [tag]);
 
     const displayModules = selectedTag
         ? getCOCModulesByTag(selectedTag)
@@ -282,7 +293,10 @@ export const COCModulePage = () => {
                 {selectedTag ?
                     (
                         <button
-                            onClick={() => setSelectedTag(null)}
+                            onClick={() => {
+                                setSelectedTag(null);
+                                setSearchParams({});
+                            }}
                             className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
                         >
                             ← 返回全部COC模组
@@ -311,6 +325,7 @@ export const COCModulePage = () => {
                                     {module.title}
                                 </h2>
                                 <p className="text-gray-600 mb-3">{module.description}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
                                 <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-6">
@@ -320,7 +335,7 @@ export const COCModulePage = () => {
                                         className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                                         onClick={() => {
                                             setSelectedTag(tag);
-                                            navigate('/coc/modules');
+                                            setSearchParams({ tag });
                                         }}
                                     >
                                         <Tag size={12} className="inline mr-1" />
@@ -362,6 +377,7 @@ export const COCModuleDetail = () => {
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">{module.title}</h1>
                 <p className="text-right text-gray-600 mb-4">{module.author}</p>
                 <p className="text-gray-600 mb-6">{module.description}</p>
+                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                     {module.tags.map(tag => (
@@ -370,7 +386,7 @@ export const COCModuleDetail = () => {
                             className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                             onClick={() => {
                                 setSelectedTag(tag);
-                                navigate('/coc/modules');
+                                navigate('/coc/modules?tag=' + tag);
                             }}
                         >
                             <Tag size={12} className="inline mr-1" />
@@ -385,7 +401,20 @@ export const COCModuleDetail = () => {
                 <p className="text-gray-600 mb-6"
                     dangerouslySetInnerHTML={{ __html: module.background.replace(/\n/g, '<br>') }}
                 />
+                <h2 className="text-gray-600 mb-2">车卡要求</h2>
+                <ul className="list-disc pl-6 mb-6">
+                    <li className="text-gray-600">{"九围: " + module.requirements.build}</li>
+                    <li className="text-gray-600">{"武器要求: " + module.requirements.weapon}</li>
+                    {module.requirements.special && module.requirements.special.map(item => (
+                        <li key={item} className="text-gray-600" dangerouslySetInnerHTML={{ __html: item }} />
+                    ))}
+                </ul>
+
             </article>
         </div>
     );
+};
+
+
+export const COCApp = () => {
 };

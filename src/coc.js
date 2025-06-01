@@ -72,15 +72,6 @@ export const COCPage = () => {
                             </div>
                             <div className="flex flex-wrap space-x-2 ml-4">
                                 <a
-                                    href={world.googleDocUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-                                >
-                                    <ExternalLink size={16} />
-                                    <span>View Google Doc</span>
-                                </a>
-                                <a
                                     href={world.pdfUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -96,6 +87,15 @@ export const COCPage = () => {
                                 >
                                     <Download size={16} />
                                     <span>Download</span>
+                                </a>
+                                <a
+                                    href={world.googleDocUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-1 bg-yellow-100 text-yellow-700 px-3 py-2 rounded-md hover:bg-yellow-200 transition-colors"
+                                >
+                                    <ExternalLink size={16} />
+                                    <span>Google Doc</span>
                                 </a>
                             </div>
                         </div>
@@ -230,15 +230,6 @@ export const COCWorldDetail = () => {
                     </div>
                     <div className="flex flex-wrap space-x-2 ml-4">
                         <a
-                            href={world.googleDocUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center space-x-1 bg-blue-100 text-blue-700 px-3 py-2 rounded-md hover:bg-blue-200 transition-colors"
-                        >
-                            <ExternalLink size={16} />
-                            <span>View Google Doc</span>
-                        </a>
-                        <a
                             href={world.pdfUrl}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -254,6 +245,15 @@ export const COCWorldDetail = () => {
                         >
                             <Download size={16} />
                             <span>Download</span>
+                        </a>
+                        <a
+                            href={world.googleDocUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center space-x-1 bg-yellow-100 text-yellow-700 px-3 py-2 rounded-md hover:bg-yellow-200 transition-colors"
+                        >
+                            <ExternalLink size={16} />
+                            <span>Google Doc</span>
                         </a>
                     </div>
                 </div>

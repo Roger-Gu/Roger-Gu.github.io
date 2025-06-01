@@ -1,11 +1,21 @@
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Clock, Tag } from 'lucide-react';
 import { blogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
 
 export const BlogPage = () => {
     const [selectedTag, setSelectedTag] = useState(null);
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    // Get current tag from URL
+    const tag = searchParams.get("tag");
+    useEffect(() => {
+        if (tag) {
+            setSelectedTag(tag);
+        } else {
+            setSelectedTag(null);
+        }
+    }, [tag]);
 
     const displayPosts = selectedTag
         ? getBlogPostsByTag(selectedTag)
@@ -51,7 +61,10 @@ export const BlogPage = () => {
                                 <span
                                     key={tag}
                                     className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
-                                    onClick={() => setSelectedTag(tag)}
+                                    onClick={() => {
+                                        setSelectedTag(tag);
+                                        setSearchParams({ tag });
+                                    }}
                                 >
                                     <Tag size={12} className="inline mr-1" />
                                     {tag}
@@ -110,7 +123,7 @@ export const BlogPostDetail = () => {
                             className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                             onClick={() => {
                                 setSelectedTag(tag);
-                                navigate('/blogs');
+                                navigate('/blogs?tag=' + tag);
                             }}
                         >
                             <Tag size={12} className="inline mr-1" />

@@ -1,21 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Clock, Tag } from 'lucide-react';
 import { blogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
 
 export const BlogPage = () => {
-    const [selectedTag, setSelectedTag] = useState(null);
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     // Get current tag from URL
-    const tag = searchParams.get("tag");
-    useEffect(() => {
-        if (tag) {
-            setSelectedTag(tag);
-        } else {
-            setSelectedTag(null);
-        }
-    }, [tag]);
+    const selectedTag = searchParams.get("tag");
 
     const displayPosts = selectedTag
         ? getBlogPostsByTag(selectedTag)
@@ -31,7 +23,7 @@ export const BlogPage = () => {
 
                 {selectedTag && (
                     <button
-                        onClick={() => setSelectedTag(null)}
+                        onClick={() => setSearchParams({})}
                         className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
                     >
                         ← View all posts
@@ -62,7 +54,6 @@ export const BlogPage = () => {
                                     key={tag}
                                     className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
                                     onClick={() => {
-                                        setSelectedTag(tag);
                                         setSearchParams({ tag });
                                     }}
                                 >

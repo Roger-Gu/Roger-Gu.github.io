@@ -1,5 +1,4 @@
 import { Download, ExternalLink, Tag } from 'lucide-react';
-import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { rulesCOC, getRuleById } from './data/COC_rules';
 import { COC_worlds } from './data/COC_worlds';
@@ -7,7 +6,6 @@ import { COC_modules, getLastCOCModules, getCOCModulesById, getCOCModulesByTag }
 
 export const COCPage = () => {
     const navigate = useNavigate();
-    const [, setSelectedTag] = useState(null);
 
     return (
         <div className="space-y-8">
@@ -111,8 +109,8 @@ export const COCPage = () => {
 
             <div className="grid gap-6">
                 {getLastCOCModules().map(module => (
-                    <div key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
-                        <div className="flex justify-between items-start mb-4">
+                    <article key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
+                        <div className="space-y-6">
                             <div className="flex-1">
                                 <h2
                                     className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
@@ -130,7 +128,6 @@ export const COCPage = () => {
                                         key={tag}
                                         className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                                         onClick={() => {
-                                            setSelectedTag(tag);
                                             navigate('/coc/modules?tag=' + tag);
                                         }}
                                     >
@@ -140,13 +137,12 @@ export const COCPage = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
 
             <button
                 onClick={() => {
-                    setSelectedTag(null);
                     navigate(`/coc/modules`);
                 }}
                 className="mt-4 text-blue-600 hover:text-blue-800 font-medium"
@@ -215,6 +211,8 @@ export const COCWorldDetail = () => {
         return <div>World not found</div>;
     }
 
+    const displayModules = getCOCModulesByTag(world.title);
+
     return (
         <div className="space-y-8">
             <button
@@ -260,23 +258,51 @@ export const COCWorldDetail = () => {
                     </div>
                 </div>
             </div>
+            <div className="text-center">
+                <h2 className="text-gray-700">以下是{world.title}的模组列表</h2>
+            </div>
+            <div className="space-y-6">
+                {displayModules.map(module => (
+                    <article key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
+                        <div className="space-y-6">
+                            <div className="flex-1">
+                                <h2
+                                    className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
+                                    onClick={() => navigate(`/coc/modules/${module.id}`)}
+                                >
+                                    {module.title}
+                                </h2>
+                                <p className="text-gray-600 mb-3">{module.description}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
+                                <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {module.tags.map(tag => (
+                                    <span
+                                        key={tag}
+                                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+                                        onClick={() => {
+                                            navigate('/coc/modules?tag=' + tag);
+                                        }}
+                                    >
+                                        <Tag size={12} className="inline mr-1" />
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
         </div>
     );
 };
 
 export const COCModulePage = () => {
-    const [selectedTag, setSelectedTag] = useState(null);
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     // Get current tag from URL
-    const tag = searchParams.get("tag");
-    useEffect(() => {
-        if (tag) {
-            setSelectedTag(tag);
-        } else {
-            setSelectedTag(null);
-        }
-    }, [tag]);
+    const selectedTag = searchParams.get("tag") || null;
 
     const displayModules = selectedTag
         ? getCOCModulesByTag(selectedTag)
@@ -294,7 +320,6 @@ export const COCModulePage = () => {
                     (
                         <button
                             onClick={() => {
-                                setSelectedTag(null);
                                 setSearchParams({});
                             }}
                             className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
@@ -315,8 +340,8 @@ export const COCModulePage = () => {
 
             <div className="space-y-6">
                 {displayModules.map(module => (
-                    <div key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
-                        <div className="flex justify-between items-start mb-4">
+                    <article key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
+                        <div className="space-y-6">
                             <div className="flex-1">
                                 <h2
                                     className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
@@ -334,8 +359,7 @@ export const COCModulePage = () => {
                                         key={tag}
                                         className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                                         onClick={() => {
-                                            setSelectedTag(tag);
-                                            setSearchParams({ tag });
+                                            navigate('/coc/modules?tag=' + tag);
                                         }}
                                     >
                                         <Tag size={12} className="inline mr-1" />
@@ -344,7 +368,7 @@ export const COCModulePage = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
         </div>
@@ -354,7 +378,6 @@ export const COCModulePage = () => {
 export const COCModuleDetail = () => {
     const { moduleId } = useParams();
     const navigate = useNavigate();
-    const [, setSelectedTag] = useState(null);
     const module = getCOCModulesById(moduleId);
 
     if (!module) {
@@ -365,7 +388,6 @@ export const COCModuleDetail = () => {
         <div className="max-w-4xl mx-auto">
             <button
                 onClick={() => {
-                    setSelectedTag(null);
                     navigate('/coc/modules');
                 }}
                 className="mb-6 text-blue-600 hover:text-blue-800 font-medium"
@@ -385,7 +407,6 @@ export const COCModuleDetail = () => {
                             key={tag}
                             className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                             onClick={() => {
-                                setSelectedTag(tag);
                                 navigate('/coc/modules?tag=' + tag);
                             }}
                         >

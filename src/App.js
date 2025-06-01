@@ -21,14 +21,14 @@ const Navigation = () => {
   return (
     <nav className="bg-white shadow-sm border-b">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex flex-wrap justify-between items-center py-4">
           <Link
             to="/"
             className="text-xl font-bold text-gray-800 hover:text-gray-600"
           >
             Roger's Website
           </Link>
-          <div className="flex space-x-6">
+          <div className="flex flex-wrap space-x-6">
             {[
               { path: '/', label: 'Home', icon: Home },
               { path: '/blogs', label: '观林碎语', icon: FileText },

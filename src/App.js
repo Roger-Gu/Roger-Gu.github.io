@@ -132,14 +132,14 @@ const HomePage = () => {
 
       <div className="bg-white p-6 rounded-lg shadow-sm border">
           <h2 className="text-2xl font-semibold mb-4 flex items-center">
-            <Book className="mr-2 text-green-600" />
+            <img src="/assets/images/coc-icon.png" alt="Call of Cthulhu icon" className="w-5 h-5 mr-2" />
             COC 最新模组
           </h2>
           <div className="space-y-4">
             {latestCOCModules.map(module => (
-              <div key={module.id} className="border-l-4 border-green-200 pl-4">
+              <div key={module.id} className="border-l-4 border-red-200 pl-4">
                 <h3
-                  className="font-medium text-gray-900 cursor-pointer hover:text-green-600"
+                  className="font-medium text-gray-900 cursor-pointer hover:text-red-600"
                   onClick={() => navigate(`/coc/modules/${module.id}`)}
                 >
                   {module.title}
@@ -150,7 +150,7 @@ const HomePage = () => {
           </div>
           <Link
             to="/coc/modules"
-            className="mt-4 text-green-600 hover:text-green-800 font-medium inline-block"
+            className="mt-4 text-red-600 hover:text-red-800 font-medium inline-block"
           >
             全部模组 →
           </Link>

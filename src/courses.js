@@ -15,7 +15,7 @@ export const CoursesPage = () => {
             <div className="grid gap-6">
                 {courses.map(course => (
                     <div key={course.id} className="bg-white p-6 rounded-lg shadow-sm border">
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex flex-wrap justify-between items-start mb-4">
                             <div className="flex-1">
                                 <h2
                                     className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
@@ -116,7 +116,7 @@ export const CourseDetail = () => {
             </button>
 
             <div className="bg-white p-8 rounded-lg shadow-sm border">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-wrap justify-between items-start mb-6">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{course.title}</h1>
                         <p className="text-gray-600 mb-4">{course.description}</p>

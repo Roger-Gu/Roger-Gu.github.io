@@ -119,8 +119,8 @@ export const COCPage = () => {
                                     {module.title}
                                 </h2>
                                 <p className="text-gray-600 mb-3">{module.description}</p>
-                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
-                                <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长: " + module.estimatedTime}</p>
+                                <p className="text-gray-600 mb-3">{"事件年份: " + module.year}</p>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {module.tags.map(tag => (
@@ -172,7 +172,7 @@ export const COCRuleDetail = () => {
             </button>
 
             <div className="bg-white p-8 rounded-lg shadow-sm border">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-wrap justify-between items-start mb-6">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{rule.title}</h1>
                         <p className="text-gray-600 mb-4">{rule.description}</p>
@@ -273,8 +273,8 @@ export const COCWorldDetail = () => {
                                     {module.title}
                                 </h2>
                                 <p className="text-gray-600 mb-3">{module.description}</p>
-                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
-                                <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长: " + module.estimatedTime}</p>
+                                <p className="text-gray-600 mb-3">{"事件年份: " + module.year}</p>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {module.tags.map(tag => (
@@ -350,8 +350,8 @@ export const COCModulePage = () => {
                                     {module.title}
                                 </h2>
                                 <p className="text-gray-600 mb-3">{module.description}</p>
-                                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
-                                <p className="text-gray-600 mb-3">{"事件年份:" + module.year}</p>
+                                <p className="text-gray-600 mb-3">{"大概时长: " + module.estimatedTime}</p>
+                                <p className="text-gray-600 mb-3">{"事件年份: " + module.year}</p>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {module.tags.map(tag => (
@@ -399,7 +399,7 @@ export const COCModuleDetail = () => {
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">{module.title}</h1>
                 <p className="text-right text-gray-600 mb-4">{module.author}</p>
                 <p className="text-gray-600 mb-6">{module.description}</p>
-                <p className="text-gray-600 mb-3">{"大概时长:" + module.estimatedTime}</p>
+                <p className="text-gray-600 mb-3">{"大概时长: " + module.estimatedTime}</p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                     {module.tags.map(tag => (

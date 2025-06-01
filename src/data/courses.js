@@ -44,7 +44,7 @@ export const courses = [
     id: "phys454",
     title: "Phys454 Advanced Quantum Theory",
     description: "Mathematical structure and physical principles which underlie quantum theory.",
-    instructor: "Achim Kempf",
+    instructor: "A. Kempf",
     semester: "Fall 2023",
     pdfUrl: "/assets/pdfs/courses/Phys454_Quantum_theory_Notes.pdf",
     topics: [
@@ -67,65 +67,8 @@ export const courses = [
       {
         type: "online",
         title: "Advanced Quantum Theory, AMATH 473/673, PHYS454 in Fall 2023",
+        author: "A. Kempf",
         url: "https://uwaterloo.ca/physics-of-information-lab/teaching/advanced-quantum-theory-amath-473673-phys454-fall-2023"
-      }
-    ]
-  },
-  {
-    id: "test",
-    title: "Data Structures and Algorithms(just a template for testing)",
-    description: "A template for testing.",
-    instructor: "Prof. Johnson",
-    semester: "Spring 2024",
-    pdfUrl: "/assets/pdfs/data-structures-notes.pdf",
-    topics: [
-      "Arrays and Strings",
-      "Linked Lists",
-      "Stacks and Queues",
-      "Binary Trees",
-      "Binary Search Trees",
-      "Heaps",
-      "Hash Tables",
-      "Graphs",
-      "Dynamic Programming",
-      "Sorting Algorithms"
-    ],
-    difficulty: "Intermediate",
-    duration: "14 weeks",
-    notes: `
-      <h2>Course Overview</h2>
-      <p>This course focuses on the design and analysis of efficient algorithms and data structures.</p>
-      
-      <h3>Algorithm Analysis</h3>
-      <p>We studied time and space complexity using Big O notation:</p>
-      <ul>
-        <li>O(1) - Constant time</li>
-        <li>O(log n) - Logarithmic time</li>
-        <li>O(n) - Linear time</li>
-        <li>O(n log n) - Linearithmic time</li>
-        <li>O(n²) - Quadratic time</li>
-      </ul>
-      
-      <h3>Key Data Structures</h3>
-      <p>Each data structure has its optimal use cases:</p>
-      <ul>
-        <li><strong>Arrays:</strong> Fast random access, cache-friendly</li>
-        <li><strong>Linked Lists:</strong> Dynamic size, efficient insertion/deletion</li>
-        <li><strong>Hash Tables:</strong> O(1) average case lookup</li>
-        <li><strong>Binary Trees:</strong> Hierarchical data organization</li>
-        <li><strong>Graphs:</strong> Modeling relationships and networks</li>
-      </ul>
-    `,
-    resources: [
-      {
-        type: "textbook",
-        title: "Introduction to Algorithms",
-        author: "Cormen, Leiserson, Rivest, and Stein"
-      },
-      {
-        type: "online",
-        title: "LeetCode Problem Practice",
-        url: "https://leetcode.com"
       }
     ]
   }

@@ -4,7 +4,7 @@ import { FileText, Book, Home, User, Clock } from 'lucide-react';
 // Import data from separate files
 import { getRecentBlogPosts } from './data/blogPosts';
 import { BlogPage, BlogPostDetail  } from './blogs';
-import { getCourses } from './data/courses';
+import { getLatestCourses } from './data/courses';
 import { CoursesPage, CourseDetail } from './courses';
 import { getLastCOCModules } from './data/COC_items';
 import { COCPage, COCRuleDetail, COCWorldDetail, COCModuleDetail, COCModulePage } from './coc';
@@ -60,6 +60,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const recentPosts = getRecentBlogPosts(2);
   const latestCOCModules = getLastCOCModules(2);
+  const latestCourses = getLatestCourses(2);
 
   return (
     <div className="space-y-12">
@@ -107,7 +108,7 @@ const HomePage = () => {
             Course Notes
           </h2>
           <div className="space-y-4">
-            {getCourses(3).map(course => (
+            {latestCourses.map(course => (
               <div key={course.id} className="border-l-4 border-green-200 pl-4">
                 <h3
                   className="font-medium text-gray-900 cursor-pointer hover:text-green-600"

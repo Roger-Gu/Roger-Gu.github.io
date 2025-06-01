@@ -414,7 +414,3 @@ export const COCModuleDetail = () => {
         </div>
     );
 };
-
-
-export const COCApp = () => {
-};

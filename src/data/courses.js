@@ -136,8 +136,8 @@ export const getCourseById = (id) => {
   return courses.find(course => course.id === id);
 };
 
-export const getCourses = (count = 3) => {
-  return courses.slice(0, count);
+export const getLatestCourses = (count = 3) => {
+  return courses.slice(Math.max(courses.length - count, 0));
 };
 
 export const getCoursesByDifficulty = (difficulty) => {

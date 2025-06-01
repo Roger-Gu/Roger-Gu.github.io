@@ -6,6 +6,7 @@ import { getRecentBlogPosts } from './data/blogPosts';
 import { BlogPage, BlogPostDetail  } from './blogs';
 import { getCourses } from './data/courses';
 import { CoursesPage, CourseDetail } from './courses';
+import { getLastCOCModules } from './data/COC_items';
 import { COCPage, COCRuleDetail, COCWorldDetail, COCModuleDetail, COCModulePage } from './coc';
 
 const Navigation = () => {
@@ -58,6 +59,7 @@ const Navigation = () => {
 const HomePage = () => {
   const navigate = useNavigate();
   const recentPosts = getRecentBlogPosts(2);
+  const latestCOCModules = getLastCOCModules(2);
 
   return (
     <div className="space-y-12">
@@ -126,6 +128,32 @@ const HomePage = () => {
           </Link>
         </div>
       </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <h2 className="text-2xl font-semibold mb-4 flex items-center">
+            <Book className="mr-2 text-green-600" />
+            COC 最新模组
+          </h2>
+          <div className="space-y-4">
+            {latestCOCModules.map(module => (
+              <div key={module.id} className="border-l-4 border-green-200 pl-4">
+                <h3
+                  className="font-medium text-gray-900 cursor-pointer hover:text-green-600"
+                  onClick={() => navigate(`/coc/modules/${module.id}`)}
+                >
+                  {module.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{module.description}</p>
+              </div>
+            ))}
+          </div>
+          <Link
+            to="/coc/modules"
+            className="mt-4 text-green-600 hover:text-green-800 font-medium inline-block"
+          >
+            全部模组 →
+          </Link>
+        </div>
     </div>
   );
 };

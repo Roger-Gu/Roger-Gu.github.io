@@ -108,7 +108,7 @@ export const COCPage = () => {
             </div>
 
             <div className="grid gap-6">
-                {getLastCOCModules().map(module => (
+                {getLastCOCModules(2).map(module => (
                     <article key={module.id} className="bg-white p-6 rounded-lg shadow-sm border">
                         <div className="space-y-6">
                             <div className="flex-1">

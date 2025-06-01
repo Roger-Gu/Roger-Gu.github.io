@@ -15,8 +15,8 @@ export const rulesCOC = [
   },
   {
     id: "costom_rules",
-    title: "秀林生房规",
-    description: "一些秀林生系列的跑团游戏的房规。",
+    title: "秀林生系列COC房规",
+    description: "一些秀林生系列的跑团游戏的特殊规则，可供参考。",
     pdfUrl: "/assets/pdfs/COC/房规列表和第二世界.pdf",
   }
 ];

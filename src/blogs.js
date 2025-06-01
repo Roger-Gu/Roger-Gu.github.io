@@ -17,9 +17,9 @@ export const BlogPage = () => {
         <div className="space-y-8">
             <div className="text-center">
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                    {selectedTag ? `Posts tagged "${selectedTag}"` : 'Blog Posts'}
+                    {selectedTag ? `Posts tagged "${selectedTag}"` : '观林碎语'}
                 </h1>
-                <p className="text-gray-600">My thoughts and experiences</p>
+                <p className="text-gray-600">观复不争故不败，秀林不屈而仍在。</p>
 
                 {selectedTag && (
                     <button

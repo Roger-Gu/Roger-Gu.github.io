@@ -125,7 +125,7 @@ export const BlogPostDetail = () => {
 
                 <div
                     className="prose max-w-none"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br>') }}
                 />
             </article>
         </div>

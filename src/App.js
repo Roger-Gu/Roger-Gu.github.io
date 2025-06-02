@@ -59,7 +59,7 @@ const Navigation = () => {
 const HomePage = () => {
   const navigate = useNavigate();
   const recentPosts = getRecentBlogPosts(2);
-  const latestCOCModules = getLastCOCModules(2);
+  const latestCOCModules = getLastCOCModules(3);
   const latestCourses = getLatestCourses(2);
 
   return (
@@ -191,7 +191,7 @@ const AboutPage = () => (
         <h2 className="text-xl font-semibold text-gray-900 mb-4">How to find me?</h2>
         <ul className="space-y-2 text-gray-700">
           <li>
-            • Email me: <a href="gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>  
+            • Email me: <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>  
           </li>
         </ul>
       </div>

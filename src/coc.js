@@ -126,7 +126,7 @@ export const COCPage = () => {
                                 {module.tags.map(tag => (
                                     <span
                                         key={tag}
-                                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+                                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
                                         onClick={() => {
                                             navigate('/coc/modules?tag=' + tag);
                                         }}
@@ -357,7 +357,7 @@ export const COCModulePage = () => {
                                 {module.tags.map(tag => (
                                     <span
                                         key={tag}
-                                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
+                                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
                                         onClick={() => {
                                             navigate('/coc/modules?tag=' + tag);
                                         }}

@@ -28,7 +28,7 @@ const Navigation = () => {
           >
             Roger's Website
           </Link>
-          <div className="flex flex-wrap space-x-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {[
               { path: '/', label: 'Home', icon: Home },
               { path: '/blogs', label: '观林碎语', icon: FileText },

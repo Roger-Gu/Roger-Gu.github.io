@@ -19,7 +19,7 @@ export const COCPage = () => {
             <div className="grid gap-6">
                 {rulesCOC.map(rule => (
                     <div key={rule.id} className="bg-white p-6 rounded-lg shadow-sm border">
-                        <div className="flex flex-wrap justify-between items-start mb-4">
+                        <div className="flex flex-wrap justify-between items-center mb-4">
                             <div className="flex-1">
                                 <h2
                                     className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
@@ -29,7 +29,7 @@ export const COCPage = () => {
                                 </h2>
                                 <p className="text-gray-600 mb-3">{rule.description}</p>
                             </div>
-                            <div className="flex flex-wrap space-x-2 ml-4">
+                            <div className="flex flex-wrap gap-2 ml-4 mb-2">
                                 <a
                                     href={rule.pdfUrl}
                                     target="_blank"
@@ -60,7 +60,7 @@ export const COCPage = () => {
             <div className="grid gap-6">
                 {COC_worlds.map(world => (
                     <div key={world.id} className="bg-white p-6 rounded-lg shadow-sm border">
-                        <div className="flex flex-wrap justify-between items-start mb-4">
+                        <div className="flex flex-wrap justify-between items-center mb-4">
                             <div className="flex-1">
                                 <h2
                                     className="text-2xl font-semibold text-gray-900 mb-2 cursor-pointer hover:text-green-600"
@@ -70,7 +70,7 @@ export const COCPage = () => {
                                 </h2>
                                 <p className="text-gray-600 mb-3">{world.description}</p>
                             </div>
-                            <div className="flex flex-wrap space-x-2 ml-4">
+                            <div className="flex flex-wrap gap-2 ml-4 mb-2">
                                 <a
                                     href={world.pdfUrl}
                                     target="_blank"
@@ -177,7 +177,7 @@ export const COCRuleDetail = () => {
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{rule.title}</h1>
                         <p className="text-gray-600 mb-4">{rule.description}</p>
                     </div>
-                    <div className="flex space-x-2 ml-4">
+                    <div className="flex flex-wrap gap-2 ml-4 mb-2">
                         <a
                             href={rule.pdfUrl}
                             target="_blank"

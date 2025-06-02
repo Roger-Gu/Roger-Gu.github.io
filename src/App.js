@@ -174,7 +174,7 @@ const AboutPage = () => (
       </p>
 
       <p className="text-gray-700 mb-6 leading-relaxed">
-        Whether you're here to read my latest thoughts on technology trends, access my course notes,
+        Whether you're here to read my latest thoughts, access my course notes,
         or just learn more about my academic and professional journey, I hope you find something valuable.
       </p>
 
@@ -184,6 +184,15 @@ const AboutPage = () => (
           <li>• Blog posts about my thoughts and experiences</li>
           <li>• Comprehensive course notes from my academic studies</li>
           <li>• Call of Cthulhu TRPG games!!!</li>
+        </ul>
+      </div>
+
+      <div className="border-t pt-6">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">How to find me?</h2>
+        <ul className="space-y-2 text-gray-700">
+          <li>
+            • Email me: <a href="gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>  
+          </li>
         </ul>
       </div>
     </div>

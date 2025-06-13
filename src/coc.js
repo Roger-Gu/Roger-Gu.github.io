@@ -359,7 +359,8 @@ export const COCModulePage = () => {
                                         key={tag}
                                         className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
                                         onClick={() => {
-                                            navigate('/coc/modules?tag=' + tag);
+                                            setSearchParams({ tag });
+                                            window.scrollTo(0, 0);
                                         }}
                                     >
                                         <Tag size={12} className="inline mr-1" />

@@ -81,11 +81,9 @@ export const courses = [
     pdfUrl: "/assets/pdfs/courses/Amath753_Advanced_PDEs.pdf",
     topics: [
       "Hilbert Spaces",
-      "Quantum Operators",
-      "Quantum States",
-      "Quantum Measurements",
-      "Quantum Entanglement",
-      "Quantum Information Theory",
+      "Lebesgue Spaces",
+      "Sobolev Spaces",
+      "well-posedness of problems"
     ],
     difficulty: "Intermediate",
     duration: "12 weeks",

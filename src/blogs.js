@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Clock, Tag } from 'lucide-react';
-import { blogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
+import { getRecentBlogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
 
 export const BlogPage = () => {
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ export const BlogPage = () => {
 
     const displayPosts = selectedTag
         ? getBlogPostsByTag(selectedTag)
-        : blogPosts;
+        : getRecentBlogPosts();
 
     return (
         <div className="space-y-8">

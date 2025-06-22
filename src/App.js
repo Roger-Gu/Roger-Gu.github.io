@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } f
 import { FileText, Book, Home, User, Clock } from 'lucide-react';
 
 // Import data from separate files
-import { getRecentBlogPosts } from './data/blogPosts';
+import { getLastestBlogPosts } from './data/blogPosts';
 import { BlogPage, BlogPostDetail } from './blogs';
 import { getLatestCourses } from './data/courses';
 import { CoursesPage, CourseDetail } from './courses';
@@ -58,7 +58,7 @@ const Navigation = () => {
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const recentPosts = getRecentBlogPosts(2);
+  const recentPosts = getLastestBlogPosts(2);
   const latestCOCModules = getLastCOCModules(3);
   const latestCourses = getLatestCourses(2);
 

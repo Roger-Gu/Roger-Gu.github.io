@@ -71,6 +71,37 @@ export const courses = [
         url: "https://uwaterloo.ca/physics-of-information-lab/teaching/advanced-quantum-theory-amath-473673-phys454-fall-2023"
       }
     ]
+  },
+  {
+    id: "amath753",
+    title: "Amath753 Advanced Partial Differential Equations",
+    description: "The main themes are well-posedness of problems, Hilbert space methods, variational principles and integral equation methods. ",
+    instructor: "S. Rhebergen",
+    semester: "Winter 2025",
+    pdfUrl: "/assets/pdfs/courses/Amath753_Advanced_PDEs.pdf",
+    topics: [
+      "Hilbert Spaces",
+      "Lebesgue Spaces",
+      "Sobolev Spaces",
+      "well-posedness of problems"
+    ],
+    difficulty: "Intermediate",
+    duration: "12 weeks",
+    notes: `
+      Not finished for parabolic PDEs.
+      Please refer to my Measure Theory notes for more detials on Lebesgue Spaces.
+      <h3>Chapters</h3>
+      <ul>
+        <li>To be updated</li>
+      </ul>
+    `,
+    resources: [
+      {
+        type: "textbook",
+        title: "Partial Differential Equations",
+        author: "Lawrence C. Evans"
+      }
+    ]
   }
 ];
 

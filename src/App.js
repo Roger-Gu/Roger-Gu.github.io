@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { FileText, Book, Home, User, Clock } from 'lucide-react';
 
 // Import data from separate files
-import { getRecentBlogPosts } from './data/blogPosts';
-import { BlogPage, BlogPostDetail  } from './blogs';
+import { getLastestBlogPosts } from './data/blogPosts';
+import { BlogPage, BlogPostDetail } from './blogs';
 import { getLatestCourses } from './data/courses';
 import { CoursesPage, CourseDetail } from './courses';
 import { getLastCOCModules } from './data/COC_items';
@@ -11,7 +12,7 @@ import { COCPage, COCRuleDetail, COCWorldDetail, COCModuleDetail, COCModulePage 
 
 const Navigation = () => {
   const location = useLocation();
-  
+
   const isActive = (path) => {
     if (path === '/' && location.pathname === '/') return true;
     if (path !== '/' && location.pathname.startsWith(path)) return true;
@@ -39,11 +40,10 @@ const Navigation = () => {
               <Link
                 key={path}
                 to={path}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${
-                  isActive(path)
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${isActive(path)
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 <Icon size={18} />
                 <span>{label}</span>
@@ -58,7 +58,7 @@ const Navigation = () => {
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const recentPosts = getRecentBlogPosts(2);
+  const recentPosts = getLastestBlogPosts(2);
   const latestCOCModules = getLastCOCModules(3);
   const latestCourses = getLatestCourses(2);
 
@@ -131,30 +131,30 @@ const HomePage = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-2xl font-semibold mb-4 flex items-center">
-            <img src="/assets/images/coc-icon.png" alt="Call of Cthulhu icon" className="w-5 h-5 mr-2" />
-            COC 最新模组
-          </h2>
-          <div className="space-y-4">
-            {latestCOCModules.map(module => (
-              <div key={module.id} className="border-l-4 border-red-200 pl-4">
-                <h3
-                  className="font-medium text-gray-900 cursor-pointer hover:text-red-600"
-                  onClick={() => navigate(`/coc/modules/${module.id}`)}
-                >
-                  {module.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{module.description}</p>
-              </div>
-            ))}
-          </div>
-          <Link
-            to="/coc/modules"
-            className="mt-4 text-red-600 hover:text-red-800 font-medium inline-block"
-          >
-            全部模组 →
-          </Link>
+        <h2 className="text-2xl font-semibold mb-4 flex items-center">
+          <img src="/assets/images/coc-icon.png" alt="Call of Cthulhu icon" className="w-5 h-5 mr-2" />
+          COC 最新模组
+        </h2>
+        <div className="space-y-4">
+          {latestCOCModules.map(module => (
+            <div key={module.id} className="border-l-4 border-red-200 pl-4">
+              <h3
+                className="font-medium text-gray-900 cursor-pointer hover:text-red-600"
+                onClick={() => navigate(`/coc/modules/${module.id}`)}
+              >
+                {module.title}
+              </h3>
+              <p className="text-gray-600 text-sm">{module.description}</p>
+            </div>
+          ))}
         </div>
+        <Link
+          to="/coc/modules"
+          className="mt-4 text-red-600 hover:text-red-800 font-medium inline-block"
+        >
+          全部模组 →
+        </Link>
+      </div>
     </div>
   );
 };
@@ -191,7 +191,7 @@ const AboutPage = () => (
         <h2 className="text-xl font-semibold text-gray-900 mb-4">How to find me?</h2>
         <ul className="space-y-2 text-gray-700">
           <li>
-            • Email me: <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>  
+            • Email me: <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>
           </li>
         </ul>
       </div>
@@ -199,9 +199,20 @@ const AboutPage = () => (
   </div>
 );
 
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname, search]);
+
+  return null;
+}
+
 const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
+      <ScrollToTop />
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <main className="max-w-6xl mx-auto px-4 py-8">

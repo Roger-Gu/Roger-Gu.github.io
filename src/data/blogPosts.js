@@ -1,6 +1,6 @@
 // src/data/blogPosts.js
 
-export const blogPosts = [
+const blogPosts = [
   {
     id: 1,
     title: "突厥",
@@ -319,7 +319,7 @@ export const blogPosts = [
     tags: ["碎碎念", "道法自然"],
     readTime: "3 min"
   }
-].sort((a, b) => new Date(b.date) - new Date(a.date));
+];
 
 // Helper functions
 export const getBlogPostById = (id) => {
@@ -330,10 +330,13 @@ export const getBlogPostsByTag = (tag) => {
   return blogPosts.filter(post => post.tags.includes(tag));
 };
 
-export const getRecentBlogPosts = (count = 3) => {
-  return blogPosts
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, count);
+export const getLastestBlogPosts = (count) => {
+  return count ? blogPosts.slice(Math.max(blogPosts.length - count, 0)) : blogPosts;
+};
+
+export const getRecentBlogPosts = (count) => {
+  const sortedPosts = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return count ? sortedPosts.slice(0, count) : sortedPosts;
 };
 
 export const getAllTags = () => {

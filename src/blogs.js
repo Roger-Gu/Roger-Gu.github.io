@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Clock, Tag } from 'lucide-react';
-import { blogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
+import { getRecentBlogPosts, getBlogPostById, getBlogPostsByTag } from './data/blogPosts';
 
 export const BlogPage = () => {
     const navigate = useNavigate();
@@ -11,7 +10,7 @@ export const BlogPage = () => {
 
     const displayPosts = selectedTag
         ? getBlogPostsByTag(selectedTag)
-        : blogPosts;
+        : getRecentBlogPosts();
 
     return (
         <div className="space-y-8">
@@ -55,6 +54,7 @@ export const BlogPage = () => {
                                     className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm cursor-pointer hover:bg-gray-200"
                                     onClick={() => {
                                         setSearchParams({ tag });
+                                        window.scrollTo(0, 0);
                                     }}
                                 >
                                     <Tag size={12} className="inline mr-1" />
@@ -80,8 +80,6 @@ export const BlogPage = () => {
 export const BlogPostDetail = () => {
     const { postId } = useParams();
     const navigate = useNavigate();
-    // eslint-disable-next-line no-unused-vars
-    const [selectedTag, setSelectedTag] = useState(null);
     const post = getBlogPostById(postId);
 
     if (!post) {
@@ -113,7 +111,6 @@ export const BlogPostDetail = () => {
                             key={tag}
                             className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-blue-200"
                             onClick={() => {
-                                setSelectedTag(tag);
                                 navigate('/blogs?tag=' + tag);
                             }}
                         >

@@ -1,6 +1,5 @@
 import requests
 import os
-from urllib.parse import urlparse, parse_qs
 import sys
 
 def download_google_doc_as_pdf(doc_url, output_folder, filename=None):

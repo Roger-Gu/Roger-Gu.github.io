@@ -76,7 +76,7 @@ export const courses = [
     id: "amath753",
     title: "Amath753 Advanced Partial Differential Equations",
     description: "The main themes are well-posedness of problems, Hilbert space methods, variational principles and integral equation methods. ",
-    instructor: "S. Rhebergen",
+    instructor: "",
     semester: "Winter 2025",
     pdfUrl: "/assets/pdfs/courses/Amath753_Advanced_PDEs.pdf",
     topics: [

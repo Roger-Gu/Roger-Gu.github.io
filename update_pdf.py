@@ -5,13 +5,23 @@ import shutil
 from typing import List, Tuple
 
 def update_pdf(file_list: List[Tuple[str, str]]) -> None:
+    """
+    Update the PDF files in the website if the new version is different from the old one.
+
+    Args:
+        file_list (List[Tuple[str, str]]): A list of tuples, where each tuple contains the old file path and the new file path. The old file path is the path to the file in the website and the new file path is the path to the file in the local directory.
+    """
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
     for f, new_f in file_list:
         f = os.path.abspath(os.path.join(base_dir, f))
         new_f = os.path.abspath(os.path.join(base_dir, new_f))
-        if not os.path.exists(new_f) or not filecmp.cmp(f, new_f):
-            shutil.copy(new_f, f)
-            print(f"Updated {f}")
+        try:
+            if not os.path.exists(new_f) or not filecmp.cmp(f, new_f):
+                shutil.copy(new_f, f)
+                print(f"✅ Updated {f}")
+        except Exception as e:
+            print(f"❌Error happened when updating {f}: {e}")
 
 
 def main():

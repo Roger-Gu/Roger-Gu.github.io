@@ -1,8 +1,13 @@
 import requests
 import os
 import sys
+from typing import Optional
 
-def download_google_doc_as_pdf(doc_url, output_folder, filename=None):
+def download_google_doc_as_pdf(
+    doc_url: str, 
+    output_folder: str, 
+    filename: Optional[str] = None
+) -> Optional[str]:
     """
     Download a Google Doc as PDF
     

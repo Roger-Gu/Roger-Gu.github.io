@@ -193,6 +193,9 @@ const AboutPage = () => (
           <li>
             • Email me: <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">gyx0018@gmail.com</a>
           </li>
+          <li>
+            • QQ: 2686696884
+          </li>
         </ul>
       </div>
     </div>

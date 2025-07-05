@@ -12,6 +12,19 @@ export const CoursesPage = () => {
                 <p className="text-gray-600">My academic journey and learning resources</p>
             </div>
 
+            <div className="prose prose-sm text-gray-600">
+                <p>
+                    These are all based on the courses that I have taken at University, and are all typed out by myself.
+                    However, they mainly serve for my personal learning purposes, and may not follow the official syllabus.
+                    I may include related topics or details that are not included in the course, and I may not cover all the topics taught in the course.
+                </p>
+                <ul className="list-disc list-inside">
+                    <li>Please do not use them for any purposes other than learning.</li>
+                    <li>Please do not directly copy from them for your assignments and/or tests.</li>
+                    <li>Please <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">inform me</a> if you find any errors or typos.</li>
+                    <li>Please <a href="mailto:gyx0018@gmail.com" className="text-blue-600 hover:text-blue-800">inform me</a> if there are any copyrights concerns, and I will remove them.</li>
+                </ul>
+            </div>
             <div className="grid gap-6">
                 {courses.map(course => (
                     <div key={course.id} className="bg-white p-6 rounded-lg shadow-sm border">

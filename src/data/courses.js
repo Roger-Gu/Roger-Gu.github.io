@@ -2,6 +2,70 @@
 
 export const courses = [
   {
+    id: "phys454",
+    title: "Phys454 Advanced Quantum Theory",
+    description: "Mathematical structure and physical principles which underlie quantum theory.",
+    instructor: "A. Kempf",
+    semester: "Fall 2023",
+    pdfUrl: "/assets/pdfs/courses/Phys454_Quantum_theory_Notes.pdf",
+    topics: [
+      "Hilbert Spaces",
+      "Quantum Operators",
+      "Quantum States",
+      "Quantum Measurements",
+      "Quantum Entanglement",
+      "Quantum Information Theory",
+    ],
+    difficulty: "Intermediate",
+    duration: "12 weeks",
+    notes: `
+      <h3>Chapters</h3>
+      <ul>
+        <li>To be updated</li>
+      </ul>
+    `,
+    resources: [
+      {
+        type: "online",
+        title: "Advanced Quantum Theory, AMATH 473/673, PHYS454 in Fall 2023",
+        author: "A. Kempf",
+        url: "https://uwaterloo.ca/physics-of-information-lab/teaching/advanced-quantum-theory-amath-473673-phys454-fall-2023"
+      }
+    ]
+  },
+
+  {
+    id: "pmath465",
+    title: "Pmath465 Smooth Manifolds",
+    description: "An introduction to smooth manifolds and differential geometry.",
+    instructor: "D. Park",
+    semester: "Fall 2023",
+    pdfUrl: "/assets/pdfs/courses/Pmath465_Smooth_Manifold_Notes.pdf",
+    topics: [
+      "Smooth manifolds",
+      "Smooth maps",
+      "Tangent vectors",
+      "Tangent and cotangent bundles",
+      "Vector fields",
+      "Tensor fields",
+      "Differential forms",
+      "Lie derivatives",
+      "integral curves"
+    ],
+    difficulty: "Demanding",
+    duration: "12 weeks",
+    notes: `
+      Omitted most proofs. This only serves as a list of results that might be useful, mostly for general relativity.
+    `,
+    resources: [
+      {
+        type: "textbook",
+        title: "Introduction to Smooth Manifolds",
+        author: "John M. Lee"
+      }
+    ]
+  },
+  {
     id: "pmath651",
     title: "Pmath651 Measure Theory",
     description: "An introduction to measure theory and Lebesgue spaces.",
@@ -41,38 +105,6 @@ export const courses = [
     ]
   },
   {
-    id: "phys454",
-    title: "Phys454 Advanced Quantum Theory",
-    description: "Mathematical structure and physical principles which underlie quantum theory.",
-    instructor: "A. Kempf",
-    semester: "Fall 2023",
-    pdfUrl: "/assets/pdfs/courses/Phys454_Quantum_theory_Notes.pdf",
-    topics: [
-      "Hilbert Spaces",
-      "Quantum Operators",
-      "Quantum States",
-      "Quantum Measurements",
-      "Quantum Entanglement",
-      "Quantum Information Theory",
-    ],
-    difficulty: "Intermediate",
-    duration: "12 weeks",
-    notes: `
-      <h3>Chapters</h3>
-      <ul>
-        <li>To be updated</li>
-      </ul>
-    `,
-    resources: [
-      {
-        type: "online",
-        title: "Advanced Quantum Theory, AMATH 473/673, PHYS454 in Fall 2023",
-        author: "A. Kempf",
-        url: "https://uwaterloo.ca/physics-of-information-lab/teaching/advanced-quantum-theory-amath-473673-phys454-fall-2023"
-      }
-    ]
-  },
-  {
     id: "amath753",
     title: "Amath753 Advanced Partial Differential Equations",
     description: "The main themes are well-posedness of problems, Hilbert space methods, variational principles and integral equation methods. ",
@@ -102,37 +134,6 @@ export const courses = [
         author: "Lawrence C. Evans"
       }
     ]
-  },
-  {
-    id: "pmath465",
-    title: "Pmath465 Smooth Manifolds",
-    description: "An introduction to smooth manifolds and differential geometry.",
-    instructor: "D. Park",
-    semester: "Fall 2023",
-    pdfUrl: "/assets/pdfs/courses/Pmath465_Smooth_Manifold_Notes.pdf",
-    topics: [
-      "Smooth manifolds",
-      "Smooth maps",
-      "Tangent vectors",
-      "Tangent and cotangent bundles",
-      "Vector fields",
-      "Tensor fields",
-      "Differential forms",
-      "Lie derivatives",
-      "integral curves"
-    ],
-    difficulty: "Demanding",
-    duration: "12 weeks",
-    notes: `
-      Omitted most proofs. This only serves as a list of results that might be useful, mostly for general relativity.
-    `,
-    resources: [
-      {
-        type: "textbook",
-        title: "Introduction to Smooth Manifolds",
-        author: "John M. Lee"
-      }
-    ]
   }
 ];
 
@@ -150,7 +151,7 @@ export const getCoursesByDifficulty = (difficulty) => {
 };
 
 export const getCoursesByTopic = (topic) => {
-  return courses.filter(course => 
+  return courses.filter(course =>
     course.topics.some(t => t.toLowerCase().includes(topic.toLowerCase()))
   );
 };

@@ -2,8 +2,8 @@
 
 export const courses = [
   {
-    id: "pmath451",
-    title: "Pmath451 Measure Theory",
+    id: "pmath651",
+    title: "Pmath651 Measure Theory",
     description: "An introduction to measure theory and Lebesgue spaces.",
     instructor: "M. Kennedy, M. Brannan",
     semester: "Fall 2024, Winter 2025",
@@ -100,6 +100,37 @@ export const courses = [
         type: "textbook",
         title: "Partial Differential Equations",
         author: "Lawrence C. Evans"
+      }
+    ]
+  },
+  {
+    id: "pmath465",
+    title: "Pmath465 Smooth Manifolds",
+    description: "An introduction to smooth manifolds and differential geometry.",
+    instructor: "D. Park",
+    semester: "Fall 2023",
+    pdfUrl: "/assets/pdfs/courses/Pmath465_Smooth_Manifold_Notes.pdf",
+    topics: [
+      "Smooth manifolds",
+      "Smooth maps",
+      "Tangent vectors",
+      "Tangent and cotangent bundles",
+      "Vector fields",
+      "Tensor fields",
+      "Differential forms",
+      "Lie derivatives",
+      "integral curves"
+    ],
+    difficulty: "Demanding",
+    duration: "12 weeks",
+    notes: `
+      Omitted most proofs. This only serves as a list of results that might be useful, mostly for general relativity.
+    `,
+    resources: [
+      {
+        type: "textbook",
+        title: "Introduction to Smooth Manifolds",
+        author: "John M. Lee"
       }
     ]
   }

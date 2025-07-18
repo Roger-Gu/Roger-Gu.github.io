@@ -178,7 +178,7 @@ export const COC_modules = [
     id: 8,
     title: "消失的第8人",
     author: "狸十二、秀林生",
-    description: "第三世界-钢铁联盟-等级1",
+    description: "第三世界-钢铁联盟-等级2",
     estimatedTime: "9.5小时",
     authorWords:
       `钢铁联盟人、天朝帝国人和大洋联邦人争论什么是最勇敢的人。

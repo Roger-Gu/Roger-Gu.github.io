@@ -120,18 +120,40 @@ export const courses = [
     difficulty: "Intermediate",
     duration: "12 weeks",
     notes: `
-      Not finished for parabolic PDEs.
       Please refer to my Measure Theory notes for more detials on Lebesgue Spaces.
-      <h3>Chapters</h3>
-      <ul>
-        <li>To be updated</li>
-      </ul>
+      Please refer to my Functional Analysis notes for more detials on Banach Spaces, Weak Topologies, and compact operators.
     `,
     resources: [
       {
         type: "textbook",
         title: "Partial Differential Equations",
         author: "Lawrence C. Evans"
+      }
+    ]
+  },
+  {
+    id: "pmath753",
+    title: "Pmath753 Functional Analysis",
+    description: "The main themes are Banach and Hilbert spaces, bounded linear maps, Hahn-Banach theorem, open mapping theorem, closed graph theorem, topologies, nets, Hausdorff spaces, dual spaces, weak topologies, Tychonoff's theorem, Banach-Alaoglu theorem, reflexive spaces. ",
+    instructor: "M. Brannan",
+    semester: "Fall 2025",
+    pdfUrl: "/assets/pdfs/courses/Pmath753_Functional_Analysis.pdf",
+    topics: [
+      "Topological spaces",
+      "Banach spaces",
+      "Weak Topologies",
+      "compact operators"
+    ],
+    difficulty: "Intermediate",
+    duration: "12 weeks",
+    notes: `
+      Not finished.
+    `,
+    resources: [
+      {
+        type: "textbook",
+        title: "Functional Analysis and Operator Algebras",
+        author: "Kenneth R. Davidson"
       }
     ]
   }

@@ -124,7 +124,7 @@ export const COC_modules = [
     title: "被暴露的封存物",
     author: "秀林生、狸十二",
     description: "第三世界-钢铁联盟-等级2",
-    estimatedTime: "10小时",
+    estimatedTime: "10-17.5小时",
     authorWords:
       `在某仓库的代表会议上将研究两个问题：加强仓库中货物的安全措施和建设全人类的梦想家园。在仓库中没有货物的情况下，代表们决定直接研究第二个问题。
       `,

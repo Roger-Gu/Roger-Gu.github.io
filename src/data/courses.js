@@ -142,7 +142,8 @@ export const courses = [
       "Topological spaces",
       "Banach spaces",
       "Weak Topologies",
-      "compact operators"
+      "Compact operators",
+      "Spectral Theory"
     ],
     difficulty: "Intermediate",
     duration: "12 weeks",

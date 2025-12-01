@@ -134,7 +134,7 @@ export const courses = [
   {
     id: "pmath753",
     title: "Pmath753 Functional Analysis",
-    description: "The main themes are Banach and Hilbert spaces, bounded linear maps, Hahn-Banach theorem, open mapping theorem, closed graph theorem, topologies, nets, Hausdorff spaces, dual spaces, weak topologies, Tychonoff's theorem, Banach-Alaoglu theorem, reflexive spaces. ",
+    description: "The main themes are Banach and Hilbert spaces, bounded linear maps, Hahn-Banach theorem, open mapping theorem, closed graph theorem, topologies, nets, Hausdorff spaces, dual spaces, weak topologies, Tychonoff's theorem, Banach-Alaoglu theorem, reflexive spaces, adjoint and compact operators, spectral theory. ",
     instructor: "M. Brannan",
     semester: "Fall 2025",
     pdfUrl: "/assets/pdfs/courses/Pmath753_Functional_Analysis.pdf",
@@ -147,7 +147,7 @@ export const courses = [
     difficulty: "Intermediate",
     duration: "12 weeks",
     notes: `
-      Not finished.
+      We would assume that you have basic knowledge of some real analysis (See Prof. New's notes on Pmath351, and Prof Tran's notes on Amath731).
     `,
     resources: [
       {

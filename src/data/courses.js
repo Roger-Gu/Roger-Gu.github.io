@@ -120,8 +120,8 @@ export const courses = [
     difficulty: "Intermediate",
     duration: "12 weeks",
     notes: `
-      Please refer to my Measure Theory notes for more detials on Lebesgue Spaces.
-      Please refer to my Functional Analysis notes for more detials on Banach Spaces, Weak Topologies, and compact operators.
+      Please refer to my Measure Theory notes for more details on Lebesgue Spaces.
+      Please refer to my Functional Analysis notes for more details on Banach Spaces, Weak Topologies, and compact operators.
     `,
     resources: [
       {

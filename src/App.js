@@ -235,7 +235,7 @@ const App = () => {
         </main>
         <footer className="bg-white border-t mt-16">
           <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-600">
-            <p>&copy; 2025 Roger's Website. All rights reserved.</p>
+            <p>&copy; 2025-2026 Roger's Website. All rights reserved.</p>
           </div>
         </footer>
       </div>

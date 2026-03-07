@@ -102,6 +102,11 @@ export const courses = [
       </ul>
     `,
     resources: [
+      {
+        type: "textbook",
+        title: "Real analysis- modern techniques and their applications",
+        author: "Gerald B. Folland"
+      }
     ]
   },
   {
@@ -155,6 +160,44 @@ export const courses = [
         type: "textbook",
         title: "Functional Analysis and Operator Algebras",
         author: "Kenneth R. Davidson"
+      }
+    ]
+  },
+  {
+    id: "co769",
+    title: "CO769 Optimal Transport",
+    description: "The main themes are optimal transport and its applications.",
+    instructor: "S. Vavasis",
+    semester: "Winter 2026",
+    pdfUrl: "/assets/pdfs/courses/CO769_Optimal_Transport.pdf",
+    topics: [
+      "Optimal transport",
+      "Monge-Transport",
+      "Kantorovich problem",
+      "Duality",
+      "Wasserstein distance",
+      "Sinkhorn's algorithm"
+    ],
+    difficulty: "Easy",
+    duration: "12 weeks",
+    notes: `
+      This set of notes assumes that you have basic knowledge of some measure theory, functional analysis, and optimization (See my Measure Theory and Functional analysis notes).
+    `,
+    resources: [
+      {
+        type: "textbook",
+        title: "Optimal transport: a comprehensive introduction to modeling, analysis, simulation, applications.",
+        author: "Gero Friesecke."
+      },
+      {
+        type: "textbook",
+        title: "Lectures on Optimal transport",
+        author: "L. Ambrosio et al."
+      },
+      {
+        type: "textbook",
+        title: "Statistical Optimal Transport",
+        author: "S. Chewy et al."
       }
     ]
   }

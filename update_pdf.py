@@ -32,6 +32,7 @@ def main():
         (r"public\assets\pdfs\courses\PMATH_451_Measure_Theory_Notes.pdf", r"C:\Users\gyx00\OneDrive - University of Waterloo\study\Pmath451 Measure Theory\PMATH_451_Measure_Theory_Notes.pdf"),
         (r"public\assets\pdfs\courses\Pmath465_Smooth_Manifold_Notes.pdf", r"C:\Users\gyx00\OneDrive - University of Waterloo\study\Pmath465 Smooth Manifold\Pmath465_Smooth_Manifold_Notes.pdf"),
         (r"public\assets\pdfs\courses\Pmath753_Functional_Analysis.pdf", r"C:\Users\gyx00\OneDrive - University of Waterloo\study\Pmath753 Functional Analysis\Pmath753_Functional_Analysis.pdf"),
+        (r"public\assets\pdfs\courses\CO769_Optimal_Transport.pdf", r"C:\Users\gyx00\OneDrive - University of Waterloo\study\CO769 Optimal Transport\CO769_Optimal_Transport.pdf"),
     ]
     update_pdf(update_list)
 

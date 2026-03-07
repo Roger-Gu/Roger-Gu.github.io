@@ -178,7 +178,7 @@ export const courses = [
       "Wasserstein distance",
       "Sinkhorn's algorithm"
     ],
-    difficulty: "Easy",
+    difficulty: "Intermediate",
     duration: "12 weeks",
     notes: `
       This set of notes assumes that you have basic knowledge of some measure theory, functional analysis, and optimization (See my Measure Theory and Functional analysis notes).

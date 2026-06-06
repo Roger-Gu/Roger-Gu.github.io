@@ -412,6 +412,22 @@ const blogPosts = [
     tags: ["碎碎念", "道法自然", "道德经"],
     readTime: "2 min"
   },
+  {
+    id: 24,
+    title: "求仙",
+    date: "2026-06-06",
+    excerpt: "圣贤本乃逆天作",
+    content: `
+            <p style="text-align: center;">
+                常恨流年催日落，勤劳但望避阎罗。
+                尘埃不敢惹明镜，拂拭菩提把垢磨。
+                抛却真情奢远阔，舍离自性惧蹉跎。
+                圣贤本乃逆天作，仙佛执心原是魔。
+            </p>              
+    `,
+    tags: ["碎碎念", "此是古言", "诗词", "词", "道法自然"],
+    readTime: "1 min"
+  },
 ];
 
 // Helper functions

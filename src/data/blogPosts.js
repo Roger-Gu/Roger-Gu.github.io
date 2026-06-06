@@ -436,7 +436,7 @@ export const getBlogPostById = (id) => {
 };
 
 export const getBlogPostsByTag = (tag) => {
-  return blogPosts.filter(post => post.tags.includes(tag));
+  return blogPosts.filter(post => post.tags.includes(tag)).sort((a, b) => new Date(b.date) - new Date(a.date));
 };
 
 export const getLastestBlogPosts = (count) => {

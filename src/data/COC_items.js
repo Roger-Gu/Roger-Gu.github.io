@@ -27,7 +27,7 @@ export const COC_modules = [
     title: "热情富勒姆",
     author: "星曦、秀林生",
     description: "第二世界-科纳系列2",
-    estimatedTime: "5-8小时",
+    estimatedTime: "5-10.5小时",
     authorWords:
       `三丈红炎由善念，九瓣红莲结苦果。`,
     background:
